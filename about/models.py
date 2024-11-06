@@ -6,7 +6,7 @@ from cloudinary.models import CloudinaryField
 class About(models.Model):
     heading = models.CharField(max_length=200)
     content = models.TextField()
-    image = CloudinaryField('image', default='placeholder')
+    image = CloudinaryField('image', default='placeholder') #Cloudinary field
     created_on = models.DateTimeField(default=timezone.now)  # Automatically set on creation
     updated_on = models.DateTimeField(auto_now=True)  # Automatically set on update
     def __str__(self):
