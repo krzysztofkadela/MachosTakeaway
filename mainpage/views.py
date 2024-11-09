@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
 from .models import CustomerComment
+from .forms import CustomLoginForm
 
 # Create your views here.
 
@@ -16,3 +18,23 @@ def index(request):
     comments = CustomerComment.objects.filter(is_approved=True).order_by('-updated_on')[:10]
     
     return render(request, 'mainpage/index.html', {'comments': comments})  # Render the homepage template with comments
+
+def custom_login(request):
+    """Handle login with CustomLoginForm."""
+    if request.method == 'POST':
+        form = CustomLoginForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('index')  # Redirect to the homepage
+    else:
+        form = CustomLoginForm()
+    return render(request, 'login.html', {'form': form})
+
+def custom_logout(request):
+    """Log out the user and redirect to the homepage."""
+    logout(request)
+    return redirect('index')  # Redirect after logging out
