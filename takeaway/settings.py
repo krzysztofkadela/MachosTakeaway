@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'allauth',               # The main app
     'allauth.account',       # Account management (login, logout, etc.)
     'allauth.socialaccount', # Social account management
+    'crispy_forms',
+    'crispy_bootstrap5',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -56,6 +58,9 @@ INSTALLED_APPS = [
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
