@@ -38,3 +38,8 @@ def custom_logout(request):
     """Log out the user and redirect to the homepage."""
     logout(request)
     return redirect('index')  # Redirect after logging out
+
+def search_view(request):
+    query = request.GET.get('q')  # Assuming the search form uses a parameter 'q'
+    results = []  # Populate this with actual search results based on your logic
+    return render(request, 'search_results.html', {'results': results})  # Point to your template
