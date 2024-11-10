@@ -21,10 +21,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('about/', include('about.urls')),  # Include the about app URLs
+    path('accounts/', include('allauth.urls')),  # Include allauth URLs for account management
     path('menu/', include('menu.urls')), # Include the menu app URL's
     path('', include('mainpage.urls')),  # Include the URLs from mainpage app
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),  # Include allauth URLs for account management
 ]
 
 if settings.DEBUG:
