@@ -13,3 +13,4 @@ class CustomerComment(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.comment[:20]}"  # Display user's username and first 20 characters of the comment
+    
