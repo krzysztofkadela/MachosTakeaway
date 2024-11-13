@@ -24,6 +24,9 @@ class CustomerCommentForm(forms.ModelForm):
     class Meta:
         model = CustomerComment
         fields = ['comment']
+        labels = {
+            'comment': 'Your Thoughts',  # Change 'Your Thoughts' to whatever you want
+        }
         widgets = {
             'comment': forms.Textarea(attrs={
                 'placeholder': 'Enter your comment here...',
