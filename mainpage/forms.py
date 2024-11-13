@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Layout, Field, Submit
 from .models import CustomerComment
 
 class CustomLoginForm(AuthenticationForm):
@@ -12,10 +12,30 @@ class CustomLoginForm(AuthenticationForm):
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Login', css_class='btn btn-primary'))
 
+#class CustomerCommentForm(forms.ModelForm):
+ #   class Meta:
+ #       model = CustomerComment
+  #      fields = ['comment']  # Only allow the comment field to be filled
+ #       widgets = {
+  #          'comment': forms.Textarea(attrs={'placeholder': 'Enter your comment here...', 'class': 'form-control', 'rows': 4}),
+ #       }
+
 class CustomerCommentForm(forms.ModelForm):
     class Meta:
         model = CustomerComment
-        fields = ['comment']  # Only allow the comment field to be filled
+        fields = ['comment']
         widgets = {
-            'comment': forms.Textarea(attrs={'placeholder': 'Enter your comment here...', 'class': 'form-control', 'rows': 4}),
+            'comment': forms.Textarea(attrs={
+                'placeholder': 'Enter your comment here...',
+                'class': 'form-control',
+                'rows': 3,
+            }),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(CustomerCommentForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()  # Initialize FormHelper
+        self.helper.layout = Layout(
+            Field('comment', css_class='form-control'),
+            Submit('submit', 'Submit Comment', css_class='btn btn-primary')
+        )
