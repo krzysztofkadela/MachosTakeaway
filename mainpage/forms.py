@@ -15,4 +15,7 @@ class CustomLoginForm(AuthenticationForm):
 class CustomerCommentForm(forms.ModelForm):
     class Meta:
         model = CustomerComment
-        fields = ['comment']  # Include comments from comment moddel
+        fields = ['comment']  # Only allow the comment field to be filled
+        widgets = {
+            'comment': forms.Textarea(attrs={'placeholder': 'Enter your comment here...', 'class': 'form-control', 'rows': 4}),
+        }

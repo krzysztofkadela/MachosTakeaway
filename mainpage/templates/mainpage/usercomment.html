@@ -16,6 +16,11 @@
           What Says Our Customers
         </h2>
       </div>
+      <form method="POST" class="mb-4">
+        {% csrf_token %}
+        {{ form|crispy }}  <!-- Render the form using Crispy Forms -->
+        <button type="submit" class="btn btn-primary">Submit Comment</button>
+    </form>
       <div class="carousel-wrap row ">
         <div class="owl-carousel client_owl-carousel">
           {% for comment in comments %}
@@ -47,7 +52,7 @@
   </section>
  <!-- end comment section -->
  <!-- booktable section -->
-  
+
 <!-- end booktable section -->
 
  
