@@ -18,7 +18,7 @@
       </div>
       <form method="POST" class="mb-4">
         {% csrf_token %}
-        {{ form|crispy }}  <!-- Render the form using Crispy Forms -->
+        {{ form|crispy }}  <!-- Render the entire form with Crispy Forms styling -->
         <button type="submit" class="btn custom_button">Submit Comment</button>
     </form>
       <div class="carousel-wrap row ">
