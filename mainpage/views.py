@@ -52,8 +52,27 @@ def custom_logout(request):
     logout(request)
     return redirect('index')  # Redirect after logging out
 
+#def user_comments(request):
+    # Fetch the last 10 approved comments
+  #  comments = CustomerComment.objects.filter(is_approved=True).order_by('-comment_date')[:10]
+    
+ #   return render(request, 'mainpage/usercomment.html', {'comments': comments})
+
+@login_required
 def user_comments(request):
     # Fetch the last 10 approved comments
     comments = CustomerComment.objects.filter(is_approved=True).order_by('-comment_date')[:10]
     
-    return render(request, 'mainpage/usercomment.html', {'comments': comments})
+    if request.method == 'POST':
+        # Handle the form submission
+        form = CustomerCommentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.user = request.user  # Associate the comment with the logged-in user
+            new_comment.is_approved = True  # Set approval status accordingly
+            new_comment.save()
+            return redirect('user_comments')  # Redirect to comments page or wherever needed
+    else:
+        form = CustomerCommentForm()
+
+    return render(request, 'mainpage/usercomment.html', {'form': form, 'comments': comments})
