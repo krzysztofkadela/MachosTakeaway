@@ -78,7 +78,7 @@
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'add_comment' %}">Add Comment</a>  <!-- Link to add comment -->
+                <a class="nav-link" href="{% url 'user_comments' %}">Add Comment</a>  <!-- Link to add comment -->
             </li>
               <li class="nav-item">
                 <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
@@ -195,7 +195,7 @@
             <form id="commentForm" method="post" style="margin-top: 1.3em;">
               {{ comment_form|crispy }}
               {% csrf_token %}
-              <button id="submitButton" type="submit" class="btn btn-signup btn-lg">Submit</button>
+              <button id="submitButton" type="submit" class="btn custom_button">Submit</button>
             </form>
             {% else %}
             <p>Log in to leave a comment. <a href="{% url 'account_login' %}">Login</a> or <a href="{% url 'account_signup' %}">Register</a></p>
@@ -370,7 +370,7 @@
 
   <!-- end about section -->
 
-  <!-- book section -->
+  <!-- location section -->
   <section class="book_section layout_padding">
     <div class="container">
       <div class="heading_container">
@@ -386,7 +386,7 @@
     </div>
     </div>
   </section>
-  <!-- end book section -->
+  <!-- end location section -->
 
   <!-- client section for last 10 aprooved comments -->
   <section class="client_section layout_padding-bottom">

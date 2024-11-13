@@ -1005,3 +1005,17 @@ a:focus {
   color: inherit;
 }
 /*# sourceMappingURL=style.css.map */
+
+.custom_button {
+  background-color: #ffc107; /* Yellow background */
+    border: none;             /* Remove default border */
+    border-radius: 25px;     /* Rounded corners */
+    padding: 10px 20px;      /* Padding for button */
+    color: black;             /* Text color */
+    font-size: 16px;         /* Font size */
+    cursor: pointer;          /* Pointer cursor on hover */
+}
+
+.custom-button:hover {
+  background-color: rgb(69, 58, 40); /* Change color on hover */
+}

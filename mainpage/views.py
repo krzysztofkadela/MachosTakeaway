@@ -31,16 +31,6 @@ def add_comment(request):
 
     return render(request, 'add_comment.html', {'comment_form': form})  # Render a page for adding comments (can be a separate template)
 
-#def homepage(request):
-#   comments = CustomerComment.objects.filter(is_approved=True).order_by('-comment_date')[:10]  # Fetch last 10 approved comments
-#   return render(request, 'index.html', {'comments': comments})
-
-
-#def index(request):
-    # Fetch the last 10 approved comments that are updated most recently
- #  comments = CustomerComment.objects.filter(is_approved=True).order_by('-updated_on')[:10]
-    
-  #  return render(request, 'mainpage/index.html', {'comments': comments})  # Render the homepage template with comments
 
 def custom_login(request):
     """Handle login with CustomLoginForm."""
@@ -62,7 +52,8 @@ def custom_logout(request):
     logout(request)
     return redirect('index')  # Redirect after logging out
 
-#def search_view(request):
-#   query = request.GET.get('q')  # Assuming the search form uses a parameter 'q'
-#   results = []  # Populate this with actual search results based on your logic
-#  return render(request, 'search_results.html', {'results': results})  # Point to your template
+def user_comments(request):
+    # Fetch the last 10 approved comments
+    comments = CustomerComment.objects.filter(is_approved=True).order_by('-comment_date')[:10]
+    
+    return render(request, 'mainpage/usercomment.html', {'comments': comments})
