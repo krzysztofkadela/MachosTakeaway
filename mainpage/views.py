@@ -14,7 +14,7 @@ def index(request):
     """Fetch the last 10 approved comments that are updated most recently."""
     comments = CustomerComment.objects.filter(is_approved=True).order_by('-updated_on')[:10]
     return render(request, 'mainpage/index.html', {'comments': comments})  # Render the homepage template with comments
-
+#not in use (NPD only)
 @login_required  # Ensure only logged-in users can access this view
 def add_comment(request):
     """View to handle adding a new comment."""
