@@ -61,7 +61,7 @@ def custom_logout(request):
 @login_required
 def user_comments(request):
     # Fetch the last 10 approved comments
-    comments = CustomerComment.objects.filter(is_approved=True).order_by('-comment_date')[:10]
+    comments = CustomerComment.objects.filter(user=request.user, is_approved=True).order_by('-comment_date')[:10]
     
     if request.method == 'POST':
         # Handle the form submission
