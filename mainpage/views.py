@@ -69,7 +69,7 @@ def user_comments(request):
         if form.is_valid():
             new_comment = form.save(commit=False)
             new_comment.user = request.user  # Associate the comment with the logged-in user
-            new_comment.is_approved = True  # Set approval status accordingly
+            new_comment.is_approved = False  # Keeps comment unapproved if not a superuser
             new_comment.save()
             return redirect('user_comments')  # Redirect to comments page or wherever needed
     else:
