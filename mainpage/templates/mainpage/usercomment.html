@@ -40,6 +40,10 @@
                 {{ comment.comment_date|date:"F d, Y" }}
                 <!-- Format the date -->
               </p>
+              <p>
+                <strong>Status:</strong> {% if comment.is_approved %}Approved{% else %}Pending{% endif %}
+                <!-- Display approval status -->
+              </p>
             </div>
             <div class="img-box">
               <img src="{% static 'images/client1.jpg' %}" alt="" class="box-img">
