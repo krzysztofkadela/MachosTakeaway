@@ -99,6 +99,24 @@
         </nav>
       </div>
     </header>
+    <section class="create_comment_section layout_padding">
+      <div class="container">
+        <div class="col-md-4 card mb-4 mt-3" id="messageSection" style="display: none;">
+          <div class="card-body">
+            <h3>Messages:</h3>
+            <div class="container" id="messagesContainer">
+              {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End of create comment and message section -->
     <!-- end header section -->
     <!-- slider section -->
     <section class="slider_section ">
@@ -185,36 +203,6 @@
 
     </section>
     <!-- end slider section -->
-    <section class="create_comment_section layout_padding">
-      <div class="container">
-        <div class="col-md-4 card mb-4 mt-3">
-          <div class="card-body">
-            {% if user.is_authenticated %}
-            <h3>Leave a comment:</h3>
-            <p>Posting as: {{ user.username }}</p>
-            <form id="commentForm" method="post" style="margin-top: 1.3em;">
-              {{ comment_form|crispy }}
-              {% csrf_token %}
-              <button id="submitButton" type="submit" class="btn custom_button">Submit</button>
-            </form>
-            {% else %}
-            <p>Log in to leave a comment. <a href="{% url 'account_login' %}">Login</a> or <a
-                href="{% url 'account_signup' %}">Register</a></p>
-            {% endif %}
-            {% if messages %}
-            <div class="container">
-              {% for message in messages %}
-              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-              {% endfor %}
-            </div>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 
   <!-- offer section -->
@@ -520,6 +508,29 @@
     </div>
   </footer>
   <!-- footer section -->
+
+  <!--Script to display massages-->
+  <script>
+    // Function to show the message section and set a timeout to hide it
+    function showMessageSection() {
+      const messageSection = document.getElementById('messageSection');
+      const messages = document.getElementById('messagesContainer').children.length;
+  
+      if (messages > 0) { // Check if there are any messages
+        messageSection.style.display = 'block'; // Show the message section
+  
+        // Set a timeout to hide the message section after 5 seconds
+        setTimeout(() => {
+          messageSection.style.display = 'none';
+        }, 5000); // 5000 milliseconds = 5 seconds
+      }
+    }
+  
+    // Call the function to display messages if any
+    document.addEventListener('DOMContentLoaded', showMessageSection);
+  </script>
+
+  <!--END script to display massages-->
 
   <!-- jQery -->
   <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>

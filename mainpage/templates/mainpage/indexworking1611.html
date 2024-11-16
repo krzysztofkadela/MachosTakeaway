@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -76,6 +77,9 @@
                 <a class="nav-link" href="book.html">Book Table</a>
               </li>
               {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_comments' %}">Add Comment</a> <!-- Link to add comment -->
+              </li>
               <li class="nav-item">
                 <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page"
                   href="{% url 'account_logout' %}">Logout</a>
@@ -181,6 +185,39 @@
 
     </section>
     <!-- end slider section -->
+    <!-- Create comment and massage section -->
+    <section class="create_comment_section layout_padding">
+      <div class="container">
+        <div class="col-md-4 card mb-4 mt-3">
+          <div class="card-body">
+            {% if user.is_authenticated %}
+            <h3>Leave a comment:</h3>
+            <p>Posting as: {{ user.username }}</p>
+            <form id="commentForm" method="post" style="margin-top: 1.3em;">
+              {{ comment_form|crispy }}
+              {% csrf_token %}
+              <button id="submitButton" type="submit" class="btn custom_button">Submit</button>
+            </form>
+            {% else %}
+            <p>Log in to leave a comment. <a href="{% url 'account_login' %}">Login</a> or <a
+                href="{% url 'account_signup' %}">Register</a></p>
+            {% endif %}
+            {% if messages %}
+            <div class="container">
+              {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+   <!--End of create comment and massage section -->
+
   </div>
 
   <!-- offer section -->
@@ -347,7 +384,7 @@
 
   <!-- end about section -->
 
-  <!-- book section -->
+  <!-- location section -->
   <section class="book_section layout_padding">
     <div class="container">
       <div class="heading_container">
@@ -363,7 +400,7 @@
     </div>
     </div>
   </section>
-  <!-- end book section -->
+  <!-- end location section -->
 
   <!-- client section for last 10 aprooved comments -->
   <section class="client_section layout_padding-bottom">
