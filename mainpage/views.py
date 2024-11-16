@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .forms import CustomerCommentForm
@@ -86,3 +86,26 @@ def user_comments(request):
         form = CustomerCommentForm()
 
     return render(request, 'mainpage/usercomment.html', {'form': form, 'comments': comments})
+
+@login_required
+def edit_comment(request, comment_id):
+    """View to edit an existing comment."""
+    comment = get_object_or_404(CustomerComment, id=comment_id, user=request.user)
+
+    if request.method == 'POST':
+        form = CustomerCommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()  # Save the updated comment to the database
+            messages.success(request, "Your comment has been updated successfully!")
+            return redirect('index')  # Redirect to the homepage or appropriate page
+    else:
+        form = CustomerCommentForm(instance=comment)  # Create a form instance with the comment data
+
+    return render(request, 'edit_comment.html', {'form': form, 'comment': comment})
+
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(CustomerComment, id=comment_id, user=request.user)
+    comment.delete()
+    messages.success(request, "Comment deleted successfully!")
+    return redirect('user_comments')  # Redirect to the user comments view
