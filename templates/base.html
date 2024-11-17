@@ -100,23 +100,18 @@
                 </nav>
             </div>
         </header>
-
         <!-- end header section -->
-         <!-- displaying Django messages -->
-<div class="container">
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        {% for message in messages %}
-        <div class="alert {{ message.tags }} alert-dismissible
-          fade show" id="msg" role="alert">
-          {{ message | safe }}
-          <button type="button" class="btn-close"
-            data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        {% endfor %}
-      </div>
     </div>
-  </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
     <!-- about section -->
@@ -233,6 +228,19 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
     </script>
     <!-- End Google Map -->
+     <!-- Display messages for 5 sec -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alerts = document.querySelectorAll('.auto-close-alert');
+            alerts.forEach(alert => {
+                setTimeout(() => {
+                    alert.classList.remove('show'); // Remove the 'show' class to hide the alert
+                    alert.classList.add('fade'); // Add 'fade' class to smoothly fade it out
+                }, 5000); // Time in milliseconds (5000 ms = 5 seconds)
+            });
+        });
+    </script>
+     <!-- End Display messages for 5 sec -->
 
 </body>
 
