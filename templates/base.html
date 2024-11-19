@@ -18,7 +18,7 @@
     <meta name="author" content="" />
     <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
 
-    <title> Feane </title>
+    <title> Machos Takeaway </title>
 
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
@@ -106,7 +106,7 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show auto-close-alert" role="alert">
                     {{ message }}
                 </div>
                 {% endfor %}
@@ -236,6 +236,10 @@
                 setTimeout(() => {
                     alert.classList.remove('show'); // Remove the 'show' class to hide the alert
                     alert.classList.add('fade'); // Add 'fade' class to smoothly fade it out
+                    // Remove from DOM
+                    setTimeout(() => {
+                        alert.remove(); //  remove the alert from the DOM
+                    }, 500); // for css transmition
                 }, 5000); // Time in milliseconds (5000 ms = 5 seconds)
             });
         });
