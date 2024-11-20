@@ -1019,3 +1019,11 @@ a:focus {
 .custom-button:hover {
   background-color: rgb(69, 58, 40); /* Change color on hover */
 }
+
+
+.menu-item-imgz {
+  width: 100%;          /* Make the image width 100% of the box */
+  height: auto;        /* Maintain aspect ratio */
+  object-fit: cover;   /* Cover the area of the box */
+  transform: translate(-50%, -50%); /* Adjust for offset */
+}
