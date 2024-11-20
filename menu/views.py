@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import MenuItem  # Make sure to import your MenuItem model
+from .models import MenuItem  # Importing MenuItem model
 
 # Create your views here.
 
