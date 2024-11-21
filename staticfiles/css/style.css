@@ -1005,3 +1005,9 @@ a:focus {
   color: inherit;
 }
 /*# sourceMappingURL=style.css.map */
+
+.food_section .box .img-box img {
+  width: 100%; /* Make the image width 100% of the .img-box */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 50%; /* Also ensure image is circular */
+}
