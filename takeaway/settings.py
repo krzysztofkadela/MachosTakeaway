@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'mainpage',
     'about',
     'menu',
+    'table_booking',
 ]
 
 SITE_ID = 1
