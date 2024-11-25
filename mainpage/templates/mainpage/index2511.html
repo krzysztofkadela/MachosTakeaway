@@ -547,24 +547,11 @@
     <!-- End Display messages for 5 sec -->
     <!-- Book Table Link -->
     <script>
-        // Assuming user.is_authenticated will output properly as true or false
-        const userIsAuthenticated = "{% if user.is_authenticated %}true{% else %}false{% endif %}";
-        // Set the URL for the booking page
-        const bookingPageUrl = "{% url 'book_table' %}";
-    
         document.getElementById('bookTableLink').onclick = function(event) {
-            event.preventDefault(); // Prevent default link behavior
-            if(userIsAuthenticated === 'true') { // Check string equality for true
-                // Redirect to the booking page if user is authenticated
-                window.location.href = bookingPageUrl;
-            } else {
-                // Show the registration prompt modal if user is not authenticated
-                $('#registrationPromptModal').modal('show');
-            }
+            event.preventDefault();
+            $('#registrationPromptModal').modal('show');
         };
     </script>
-
-
     <!--End Book Table Link -->
 
     <!-- jQery -->

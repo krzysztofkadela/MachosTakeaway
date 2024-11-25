@@ -23,6 +23,7 @@ urlpatterns = [
     path('about/', include('about.urls')),  # Include the about app URLs
     path('accounts/', include('allauth.urls')),  # Include allauth URLs for account management
     path('menu/', include('menu.urls')), # Include the menu app URL's
+    path('table_booking/', include('table_booking.urls')),
     path('', include('mainpage.urls')),  # Include the URLs from mainpage app
     path('admin/', admin.site.urls),
 ]
