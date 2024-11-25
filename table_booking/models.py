@@ -1,9 +1,7 @@
 from django.db import models
-from appointment.models import Appointment
-from django.contrib.auth.models import User  # Import the User model
+from django.contrib.auth.models import User
 
-# Create your models here.
-
+# Table model
 class Table(models.Model):
     TABLE_SIZE_CHOICES = [
         (2, '2 People'),
@@ -17,8 +15,12 @@ class Table(models.Model):
     def __str__(self):
         return f"Table for {self.size} people - {'Booked' if self.is_booked else 'Available'}"
     
-class TableBooking(Appointment):
+# TableBooking model
+class TableBooking(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)  # Link to User
+    booking_time = models.DateTimeField(auto_now_add=True)  # Time of booking
+    is_approved = models.BooleanField(default=False)  # Approval field for admin
 
     def __str__(self):
-        return f"Booking for Table {self.table.size} - {self.start_time} to {self.end_time}"
+        return f"Booking for Table {self.table.size} by {self.user.username if self.user else 'Guest'} - Approved: {self.is_approved}"

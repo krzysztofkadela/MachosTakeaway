@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <!-- book section -->
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Book A Table
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container">
+            <form action="" method="POST">
+              {% csrf_token %}
+              {{ form.user }}  <!-- Render the hidden user field -->
+              <div>
+                <select name="table" class="form-control nice-select wide">  <!-- changed this for table selection -->
+                  <option value="" disabled selected>Choose a Table</option>
+                  {% for table in tables %}
+                    <option value="{{ table.id }}">{{ table }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Phone Number" name="phone" required/>
+              </div>
+              <div>
+                <input type="email" class="form-control" placeholder="Your Email" name="email" required/>
+              </div>
+              <div>
+                <input type="date" class="form-control" name="date" required>
+              </div>
+              <div class="btn_box">
+                <button type="submit">
+                  Book Now
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
