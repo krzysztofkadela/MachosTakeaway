@@ -1,14 +1,14 @@
 from django.contrib import admin
+from .models import Table, TableBooking, RestaurantSettings
 
+@admin.register(Table)
+class TableAdmin(admin.ModelAdmin):
+    list_display = ('size', 'is_booked')
 
-# admin.py
-from django.contrib import admin
-from .models import Table, TableBooking
-
+@admin.register(TableBooking)
 class TableBookingAdmin(admin.ModelAdmin):
-    list_display = ('table', 'user', 'is_approved')  
-    list_filter = ('is_approved',)
-    search_fields = ('user__username', 'table__size')
+    list_display = ('table', 'user', 'booking_time', 'is_approved')
 
-admin.site.register(Table)
-admin.site.register(TableBooking, TableBookingAdmin)
+@admin.register(RestaurantSettings)
+class RestaurantSettingsAdmin(admin.ModelAdmin):
+    list_display = ('opening_time', 'closing_time')
