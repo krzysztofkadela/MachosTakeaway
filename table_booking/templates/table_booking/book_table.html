@@ -16,23 +16,39 @@
             <form action="" method="POST">
               {% csrf_token %}
               {{ form.user }}  <!-- Render the hidden user field -->
+
+              <!-- Number of people selection -->
               <div>
-                <select name="table" class="form-control nice-select wide">  <!-- changed this for table selection -->
+                <label for="num_people">Number of People:</label>
+                <select id="num_people" name="num_people" class="form-control nice-select wide" required>
+                  <option value="" disabled selected>Select number of people</option>
+                  {% for i in number_choices %}
+                    <option value="{{ i }}">{{ i }} Person{% if i > 1 %}s{% endif %}</option>
+                  {% endfor %}
+                </select>
+              </div>
+
+              <!-- Table selection -->
+              <div>
+                <select name="table" class="form-control nice-select wide" required>
                   <option value="" disabled selected>Choose a Table</option>
                   {% for table in tables %}
                     <option value="{{ table.id }}">{{ table }}</option>
                   {% endfor %}
                 </select>
               </div>
+
+              <!-- Phone number input -->
               <div>
-                <input type="text" class="form-control" placeholder="Phone Number" name="phone" required/>
+                <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" required/>
               </div>
+
+              <!-- Booking date and time -->
               <div>
-                <input type="email" class="form-control" placeholder="Your Email" name="email" required/>
+                <label for="booking_time">Select Booking Time:</label>
+                <input type="datetime-local" class="form-control" name="booking_time" required>
               </div>
-              <div>
-                <input type="date" class="form-control" name="date" required>
-              </div>
+
               <div class="btn_box">
                 <button type="submit">
                   Book Now
