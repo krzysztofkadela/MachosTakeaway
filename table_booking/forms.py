@@ -6,7 +6,8 @@ class TableBookingForm(forms.ModelForm):
         model = TableBooking
         fields = ['table', 'phone_number', 'num_people', 'booking_time']  # Include necessary fields
 
-    num_people = forms.ChoiceField(
-        choices=[(i, i) for i in range(1, 7)],  # Choices from 1 to 6
-        initial=1,  # Set default to 1
-    )
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  # Extract user from kwargs
+        super().__init__(*args, **kwargs)  # Call the parent constructor
+        if user:
+            self.instance.user = user  # Automatically assign the user if provided
