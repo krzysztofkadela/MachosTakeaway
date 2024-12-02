@@ -14,21 +14,7 @@
                 <div class="form_container">
                     <form method="post" action="{% url 'make_reservation' %}">
                         {% csrf_token %}
-                        <div>
-                            {{ form.customer_name|as_widget(attrs={'class': 'form-control', 'placeholder': 'Your Name'}) }}
-                        </div>
-                        <div>
-                            {{ form.contact_number|as_widget(attrs={'class': 'form-control', 'placeholder': 'Your Phone Number'}) }}
-                        </div>
-                        <div>
-                            {{ form.number_of_guests|as_widget(attrs={'class': 'form-control nice-select wide'}) }}
-                        </div>
-                        <div>
-                            {{ form.booking_date|as_widget(attrs={'class': 'form-control', 'type': 'date'}) }}
-                        </div>
-                        <div>
-                            {{ form.booking_time|as_widget(attrs={'class': 'form-control', 'type': 'time'}) }}
-                        </div>
+                        {{ form.as_p }}  <!-- This will render all fields with defined attributes -->
                         <div class="btn_box">
                             <button type="submit" class="btn btn-primary">Book Now</button>
                         </div>
