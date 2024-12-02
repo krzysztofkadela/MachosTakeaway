@@ -5,18 +5,19 @@
 <section class="book_section layout_padding">
     <div class="container">
         <div class="heading_container">
-            <h2>
-                Book A Table
-            </h2>
+            {% if user.is_authenticated %}
+            <h2>Welcome {{ user.username }}, please book a Table!</h2> <!-- Welcome message for logged-in users -->
+            {% endif %}
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="form_container">
                     <form method="post" action="{% url 'make_reservation' %}">
                         {% csrf_token %}
-                        {{ form.as_p }}  <!-- This will render all fields with defined attributes -->
+                        {{ form.as_p }}  <!-- Render all fields with defined attributes -->
                         <div class="btn_box">
                             <button type="submit" class="btn btn-primary">Book Now</button>
+                            <a href="{% url 'index' %}" class="btn btn-secondary ml-2">Cancel</a> <!--Cancel button -->
                         </div>
                     </form>
                 </div>

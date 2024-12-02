@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import ReservationForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+
+@login_required  # Ensures the user is logged in
 def make_reservation(request):
     if request.method == 'POST':
         form = ReservationForm(request.POST)
