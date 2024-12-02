@@ -77,7 +77,7 @@
                                 <a class="nav-link" href="{% url 'about' %}">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'make_reservation' %}">Book Table</a>
+                                <a id="bookTableLink" class="nav-link" href="{% url 'make_reservation' %}">Book Table</a>
                             </li>
                             {% if user.is_authenticated %}
                             <li class="nav-item">
@@ -550,7 +550,7 @@
         // Assuming user.is_authenticated will output properly as true or false
         const userIsAuthenticated = "{% if user.is_authenticated %}true{% else %}false{% endif %}";
         // Set the URL for the booking page
-        const bookingPageUrl = "{% url 'book_table' %}";
+        const bookingPageUrl = "{% url 'make_reservation' %}";
     
         document.getElementById('bookTableLink').onclick = function(event) {
             event.preventDefault(); // Prevent default link behavior
