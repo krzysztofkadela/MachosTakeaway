@@ -70,7 +70,7 @@
                             {% url 'menu' as menu_url %}
                             {% url 'about' as about_url %}
                             {% url 'make_reservation' as make_reservation_url %}
-                    
+
                             <li class="nav-item {% if request.path == index_url %}active{% endif %}">
                                 <a class="nav-link" href="{{ index_url }}">Home</a>
                             </li>
@@ -81,7 +81,7 @@
                                 <a class="nav-link" href="{{ about_url }}">About</a>
                             </li>
                             <li class="nav-item {% if request.path == make_reservation_url %}active{% endif %}">
-                                <a class="nav-link" href="{{ make_reservation_url }}">Book Table</a>
+                                <a id="bookTableLink" class="nav-link" href="{{ make_reservation_url }}">Book Table</a>
                             </li>
                             {% if user.is_authenticated %}
                             <li class="nav-item">
@@ -108,7 +108,8 @@
     <div class="container">
         <div class="auto-close-alerts">
             {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-2 auto-close-alert" role="alert" style="display: inline-block;">
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-2 auto-close-alert" role="alert"
+                style="display: inline-block;">
                 {{ message }}
             </div>
             {% endfor %}
@@ -144,7 +145,7 @@
                             <a href="">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                 <span>
-                                    Call +01 1234567890
+                                    Call 00353876396091
                                 </span>
                             </a>
                             <a href="">
@@ -159,7 +160,7 @@
                 <div class="col-md-4 footer-col">
                     <div class="footer_detail">
                         <a href="" class="footer-logo">
-                            Feane
+                            MachoseTakeaway
                         </a>
                         <p>
                             Necessary, making this the first true generator on the Internet. It uses a dictionary of
@@ -229,9 +230,33 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
     </script>
     <!-- End Google Map -->
-     <!-- Display messages for 5 sec -->
+
+    <!-- Registration Prompt Modal -->
+    <div class="modal fade" id="registrationPromptModal" tabindex="-1" role="dialog"
+        aria-labelledby="registrationPromptLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registrationPromptLabel">Registration/Login Required</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>If you have an account, please <a href="{% url 'account_login' %}">log in</a>; if not, please <a
+                            href="{% url 'account_signup' %}">register</a> to book a table.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Registration Prompt Modal -->
+
+    <!-- Display messages for 5 sec -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const alerts = document.querySelectorAll('.auto-close-alert');
             alerts.forEach(alert => {
                 setTimeout(() => {
@@ -245,7 +270,29 @@
             });
         });
     </script>
-     <!-- End Display messages for 5 sec -->
+    <!-- End Display messages for 5 sec -->
+    <!-- Book Table Link -->
+    <script>
+        // Assuming user.is_authenticated will output properly as true or false
+        const userIsAuthenticated = "{% if user.is_authenticated %}true{% else %}false{% endif %}";
+        // Set the URL for the booking page
+        const bookingPageUrl = "{% url 'make_reservation' %}";
+
+        document.getElementById('bookTableLink').onclick = function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            if (userIsAuthenticated === 'true') { // Check string equality for true
+                // Redirect to the booking page if user is authenticated
+                window.location.href = bookingPageUrl;
+            } else {
+                // Show the registration prompt modal if user is not authenticated
+                $('#registrationPromptModal').modal('show');
+            }
+        };
+    </script>
+
+
+    <!--End Book Table Link -->
+
 
 </body>
 

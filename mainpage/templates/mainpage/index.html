@@ -82,7 +82,7 @@
                                 <a class="nav-link" href="{{ about_url }}">About</a>
                             </li>
                             <li class="nav-item {% if request.path == make_reservation_url %}active{% endif %}">
-                                <a class="nav-link" href="{{ make_reservation_url }}">Book Table</a>
+                                <a id="bookTableLink" class="nav-link" href="{{ make_reservation_url }}">Book Table</a>
                             </li>
                             {% if user.is_authenticated %}
                             <li class="nav-item">
