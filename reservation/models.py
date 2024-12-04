@@ -13,6 +13,7 @@ class Reservation(models.Model):
     booking_date = models.DateField()  # Field for the date of booking
     booking_time = models.TimeField()   # Field for the time of booking
     is_approved = models.BooleanField(default=False)  # Field to mark approval status
+    special_requests = models.CharField(max_length=50, blank=True)  # Field for special requests
 
     def __str__(self):
         return f'Reservation for {self.user.username} on {self.booking_date} at {self.booking_time}'

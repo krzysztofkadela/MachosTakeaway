@@ -27,9 +27,20 @@ class ReservationForm(forms.ModelForm):
     # Initializing booking_time as an empty choice field
     booking_time = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-control nice-select wide'}))
 
+    # Special requests field with consistent styling
+    special_requests = forms.CharField(
+        max_length=50,
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',  # Same class as phone number
+            'placeholder': 'Special Requests (max 50 characters)', 
+            'maxlength': '50'
+        })
+    )
+
     class Meta:
         model = Reservation
-        fields = ['number_of_guests', 'contact_number', 'booking_date', 'booking_time']
+        fields = ['number_of_guests', 'contact_number', 'booking_date', 'booking_time', 'special_requests']
         widgets = {
             'contact_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Phone Number'}),
             'booking_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
