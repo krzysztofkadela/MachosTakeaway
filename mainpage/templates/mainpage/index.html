@@ -3,6 +3,7 @@
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
+
 <!DOCTYPE html>
 <html>
 
@@ -65,37 +66,37 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav  mx-auto ">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'index' %}">Home <span
-                                        class="sr-only">(current)</span></a>
+                        <ul class="navbar-nav mx-auto">
+                            {% url 'index' as index_url %}
+                            {% url 'menu' as menu_url %}
+                            {% url 'about' as about_url %}
+                            {% url 'make_reservation' as make_reservation_url %}
+                    
+                            <li class="nav-item {% if request.path == index_url %}active{% endif %}">
+                                <a class="nav-link" href="{{ index_url }}">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'menu' %}">Menu</a>
+                            <li class="nav-item {% if request.path == menu_url %}active{% endif %}">
+                                <a class="nav-link" href="{{ menu_url }}">Menu</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'about' %}">About</a>
+                            <li class="nav-item {% if request.path == about_url %}active{% endif %}">
+                                <a class="nav-link" href="{{ about_url }}">About</a>
                             </li>
-                            <li class="nav-item">
-                                <a id="bookTableLink" class="nav-link" href="{% url 'make_reservation' %}">Book Table</a>
+                            <li class="nav-item {% if request.path == make_reservation_url %}active{% endif %}">
+                                <a class="nav-link" href="{{ make_reservation_url }}">Book Table</a>
                             </li>
                             {% if user.is_authenticated %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'user_comments' %}">Add Comment</a>
-                                <!-- Link to add comment -->
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link {% if request.path == logout_url %}active{% endif %}"
-                                    aria-current="page" href="{% url 'account_logout' %}">Logout</a>
+                            <li class="nav-item {% if request.path == logout_url %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                             </li>
                             {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link {% if request.path == signup_url %}active{% endif %}"
-                                    aria-current="page" href="{% url 'account_signup' %}">Register</a>
+                            <li class="nav-item {% if request.path == signup_url %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link {% if request.path == login_url %}active{% endif %}"
-                                    aria-current="page" href="{% url 'account_login' %}">Login</a>
+                            <li class="nav-item {% if request.path == login_url %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                             </li>
                             {% endif %}
                         </ul>
@@ -498,26 +499,28 @@
         </div>
     </footer>
     <!-- footer section -->
-<!-- Registration Prompt Modal -->
-<div class="modal fade" id="registrationPromptModal" tabindex="-1" role="dialog" aria-labelledby="registrationPromptLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="registrationPromptLabel">Registration/Login Required</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>If you have an account, please <a href="{% url 'account_login' %}">log in</a>; if not, please <a href="{% url 'account_signup' %}">register</a> to book a table.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <!-- Registration Prompt Modal -->
+    <div class="modal fade" id="registrationPromptModal" tabindex="-1" role="dialog"
+        aria-labelledby="registrationPromptLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registrationPromptLabel">Registration/Login Required</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>If you have an account, please <a href="{% url 'account_login' %}">log in</a>; if not, please <a
+                            href="{% url 'account_signup' %}">register</a> to book a table.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Registration Prompt Modal -->
+    <!-- End Registration Prompt Modal -->
 
     <!-- Display messages for 5 sec -->
     <script>
@@ -542,10 +545,10 @@
         const userIsAuthenticated = "{% if user.is_authenticated %}true{% else %}false{% endif %}";
         // Set the URL for the booking page
         const bookingPageUrl = "{% url 'make_reservation' %}";
-    
-        document.getElementById('bookTableLink').onclick = function(event) {
+
+        document.getElementById('bookTableLink').onclick = function (event) {
             event.preventDefault(); // Prevent default link behavior
-            if(userIsAuthenticated === 'true') { // Check string equality for true
+            if (userIsAuthenticated === 'true') { // Check string equality for true
                 // Redirect to the booking page if user is authenticated
                 window.location.href = bookingPageUrl;
             } else {

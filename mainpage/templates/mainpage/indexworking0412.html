@@ -77,7 +77,7 @@
                                 <a class="nav-link" href="{% url 'about' %}">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="bookTableLink">Book Table</a>
+                                <a id="bookTableLink" class="nav-link" href="{% url 'make_reservation' %}">Book Table</a>
                             </li>
                             {% if user.is_authenticated %}
                             <li class="nav-item">
@@ -358,15 +358,6 @@
 
     <!-- end offer section -->
 
-    <!-- food section -->
-
-
-    <!-- end food section -->
-
-    <!-- about section -->
-
-    <!-- end about section -->
-
     <!-- location section -->
     <section class="book_section layout_padding">
         <div class="container">
@@ -547,11 +538,24 @@
     <!-- End Display messages for 5 sec -->
     <!-- Book Table Link -->
     <script>
+        // Assuming user.is_authenticated will output properly as true or false
+        const userIsAuthenticated = "{% if user.is_authenticated %}true{% else %}false{% endif %}";
+        // Set the URL for the booking page
+        const bookingPageUrl = "{% url 'make_reservation' %}";
+    
         document.getElementById('bookTableLink').onclick = function(event) {
-            event.preventDefault();
-            $('#registrationPromptModal').modal('show');
+            event.preventDefault(); // Prevent default link behavior
+            if(userIsAuthenticated === 'true') { // Check string equality for true
+                // Redirect to the booking page if user is authenticated
+                window.location.href = bookingPageUrl;
+            } else {
+                // Show the registration prompt modal if user is not authenticated
+                $('#registrationPromptModal').modal('show');
+            }
         };
     </script>
+
+
     <!--End Book Table Link -->
 
     <!-- jQery -->
