@@ -1016,7 +1016,7 @@ a:focus {
     cursor: pointer;          /* Pointer cursor on hover */
 }
 
-.custom-button:hover {
+.custom_button:hover {
   background-color: rgb(69, 58, 40); /* Change color on hover */
 }
 
