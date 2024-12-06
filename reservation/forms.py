@@ -3,49 +3,33 @@ from .models import Reservation, RestaurantSettings
 from django.core.exceptions import ValidationError
 from datetime import datetime, timedelta
 
-
-
-class ReservationForm021122024(forms.ModelForm):
-    NUMBER_OF_GUESTS_CHOICES = [(i, str(i)) for i in range(1, 7)]  # Creates a list of tuples (1, '1'), (2, '2'), ..., (6, '6')
-    
-    number_of_guests = forms.ChoiceField(choices=NUMBER_OF_GUESTS_CHOICES, widget=forms.Select(attrs={'class': 'form-control nice-select wide'}))
-
-    class Meta:
-        model = Reservation
-        fields = ['number_of_guests', 'contact_number', 'booking_date', 'booking_time']
-        widgets = {
-            'contact_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Phone Number'}),
-            'booking_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'booking_time': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}),
-        }
-
-
+# Form with required in fields.
 class ReservationForm(forms.ModelForm):
     NUMBER_OF_GUESTS_CHOICES = [(i, str(i)) for i in range(1, 7)]
-    number_of_guests = forms.ChoiceField(choices=NUMBER_OF_GUESTS_CHOICES, widget=forms.Select(attrs={'class': 'form-control nice-select wide'}))
-    
-    # Initializing booking_time as an empty choice field
-    booking_time = forms.ChoiceField(choices=[], widget=forms.Select(attrs={'class': 'form-control nice-select wide'}))
+    number_of_guests = forms.ChoiceField(choices=NUMBER_OF_GUESTS_CHOICES, 
+                                          widget=forms.Select(attrs={'class': 'form-control nice-select wide', 'required': 'required'}))
 
-    # Special requests field with consistent styling
+    booking_time = forms.ChoiceField(choices=[], 
+                                      widget=forms.Select(attrs={'class': 'form-control nice-select wide', 'required': 'required'}))
+
     special_requests = forms.CharField(
         max_length=50,
         required=False,
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',  # Same class as phone number
-            'placeholder': 'Special Requests (max 50 characters)', 
-            'maxlength': '50'
-        })
+        widget=forms.TextInput(attrs={'class': 'form-control', 
+                                      'placeholder': 'Special Requests (max 50 characters)', 
+                                      'maxlength': '50'})
     )
 
     class Meta:
         model = Reservation
         fields = ['number_of_guests', 'contact_number', 'booking_date', 'booking_time', 'special_requests']
         widgets = {
-            'contact_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Phone Number'}),
-            'booking_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'contact_number': forms.TextInput(attrs={'class': 'form-control', 
+                                                      'placeholder': 'Your Phone Number', 
+                                                      'required': 'required'}),
+            'booking_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'required': 'required'}),
         }
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Populate the booking_time choices based on restaurant settings
