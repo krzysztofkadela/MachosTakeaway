@@ -369,7 +369,7 @@
             </div>
             <div class="col-md-12">
                 <div class="map_container ">
-                    <div id="googleMap"></div>
+                    <div id="googleMap" style="width:100%;height:400px;"></div>
                 </div>
             </div>
         </div>
@@ -558,6 +558,26 @@
         };
     </script>
 
+<script>
+    function initMap() {
+        const location = { lat: -34.397, lng: 150.644 }; // Replace with your desired coordinates
+        const map = new google.maps.Map(document.getElementById("googleMap"), {
+            zoom: 8,
+            center: location,
+        });
+
+        const marker = new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    }
+
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCKVxG9bksbr0QkHa37QJMDSg6hpLNNgIg&callback=initMap`;
+    script.async = true;
+    document.head.appendChild(script);
+</script>
+
 
     <!--End Book Table Link -->
 
@@ -579,8 +599,7 @@
     <!-- custom js -->
     <script src="{% static 'js/custom.js' %}"></script>
     <!-- Google Map -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
-    </script>
+
     <!-- End Google Map -->
 
 </body>
