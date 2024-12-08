@@ -476,13 +476,19 @@ a:focus {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
-/*# Food Section in Menu */
+
+/* Food  section starts*/
 
 .food_section .filters_menu {
   padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   list-style-type: none;
   margin: 45px 0 20px 0;
 }
@@ -502,6 +508,8 @@ a:focus {
   position: relative;
   margin-top: 25px;
   background-color: #ffffff;
+  border-radius: 10px;
+  color: #ffffff;
   border-radius: 15px;
   overflow: hidden;
   background: linear-gradient(to bottom, #f1f2f3 25px, #222831 25px);
@@ -509,21 +517,35 @@ a:focus {
 
 .food_section .box .img-box {
   background: #f1f2f3;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 215px; /* Fixed height for uniformity */
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 215px;
   border-radius: 0 0 0 45px;
-  overflow: hidden; /* Ensures any overflow is hidden */
+  margin: -1px;
+  padding: 25px;
 }
-
+/* Update for img  */
 .food_section .box .img-box img {
-  width: 100%; /* Ensures full width of the img-box */
-  height: 100%; /* Ensures full height of the img-box */
-  object-fit: cover; /* Ensures the image covers the box without distortion */
-  transition: all .2s; /* Transition for hover effects */
+  width: 100%; /* Make image fill width */
+  height: 100%; /* Make image fill height */
+  object-fit: cover; /* Crop the image to fill the box without stretching */
+  transition: transform 0.2s; /* Transition effect on hover */
 }
 
+/*.food_section .box .img-box img {
+  max-width: 100%;
+  max-height: 145px;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+*/
 .food_section .box .detail-box {
   padding: 25px;
 }
@@ -541,8 +563,12 @@ a:focus {
 }
 
 .food_section .box .options {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .food_section .box .options a {
@@ -550,9 +576,15 @@ a:focus {
   height: 40px;
   border-radius: 100%;
   background: #ffbe33;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .food_section .box .options a svg {
@@ -562,12 +594,17 @@ a:focus {
 }
 
 .food_section .box:hover .img-box img {
-  transform: scale(1.1); /* Scale effect on hover */
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .food_section .btn-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-top: 45px;
 }
 
@@ -577,6 +614,7 @@ a:focus {
   background-color: #ffbe33;
   color: #ffffff;
   border-radius: 45px;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
   border: none;
 }
@@ -585,7 +623,8 @@ a:focus {
   background-color: #e69c00;
 }
 
-/*# about section */
+/* Food  section end*/
+
 .about_section {
   background: #222831;
   color: #ffffff;
@@ -633,6 +672,9 @@ a:focus {
 .about_section .detail-box a:hover {
   background-color: #e69c00;
 }
+/* about section end*/
+
+/* book section start */
 
 .book_section {
   position: relative;
@@ -707,6 +749,7 @@ a:focus {
   min-height: 100%;
   width: 100%;
 }
+/* book section end */
 
 /* client section start */
 .client_section .heading_container {
@@ -978,3 +1021,24 @@ a:focus {
 }
 /*# sourceMappingURL=style.css.map */
 
+.custom_button {
+  background-color: #ffc107; /* Yellow background */
+    border: none;             /* Remove default border */
+    border-radius: 25px;     /* Rounded corners */
+    padding: 10px 20px;      /* Padding for button */
+    color: black;             /* Text color */
+    font-size: 16px;         /* Font size */
+    cursor: pointer;          /* Pointer cursor on hover */
+}
+
+.custom_button:hover {
+  background-color: rgb(69, 58, 40); /* Change color on hover */
+}
+
+
+.menu-item-imgz {
+  width: 100%;          /* Make the image width 100% of the box */
+  height: auto;        /* Maintain aspect ratio */
+  object-fit: cover;   /* Cover the area of the box */
+  transform: translate(-50%, -50%); /* Adjust for offset */
+}

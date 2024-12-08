@@ -477,6 +477,8 @@ a:focus {
           transform: scale(1.1);
 }
 
+/* Food  section starts*/
+
 .food_section .filters_menu {
   padding: 0;
   display: -webkit-box;
@@ -529,14 +531,21 @@ a:focus {
   margin: -1px;
   padding: 25px;
 }
-
+/* Update for img  */
 .food_section .box .img-box img {
+  width: 100%; /* Make image fill width */
+  height: 100%; /* Make image fill height */
+  object-fit: cover; /* Crop the image to fill the box without stretching */
+  transition: transform 0.2s; /* Transition effect on hover */
+}
+
+/*.food_section .box .img-box img {
   max-width: 100%;
   max-height: 145px;
   -webkit-transition: all .2s;
   transition: all .2s;
 }
-
+*/
 .food_section .box .detail-box {
   padding: 25px;
 }
@@ -614,6 +623,8 @@ a:focus {
   background-color: #e69c00;
 }
 
+/* Food  section end*/
+
 .about_section {
   background: #222831;
   color: #ffffff;
@@ -661,6 +672,9 @@ a:focus {
 .about_section .detail-box a:hover {
   background-color: #e69c00;
 }
+/* about section end*/
+
+/* book section start */
 
 .book_section {
   position: relative;
@@ -735,6 +749,7 @@ a:focus {
   min-height: 100%;
   width: 100%;
 }
+/* book section end */
 
 /* client section start */
 .client_section .heading_container {
