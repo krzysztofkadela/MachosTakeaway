@@ -12,13 +12,13 @@ class CustomLoginForm(AuthenticationForm):
         self.helper.form_method = 'post'
         self.helper.add_input(Submit('submit', 'Login', css_class='btn btn-primary'))
 
-
+# CustomerCommentForm.
 class CustomerCommentForm(forms.ModelForm):
     class Meta:
         model = CustomerComment
         fields = ['comment']
         labels = {
-            'comment': 'Your Thoughts',  # Change 'Your Thoughts' to whatever you want
+            'comment': 'How did we do?', # Comment title comment.
         }
         widgets = {
             'comment': forms.Textarea(attrs={
