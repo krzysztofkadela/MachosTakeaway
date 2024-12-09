@@ -573,7 +573,7 @@
     }
 
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCKVxG9bksbr0QkHa37QJMDSg6hpLNNgIg&callback=initMap`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap`;
     script.async = true;
     document.head.appendChild(script);
 </script>

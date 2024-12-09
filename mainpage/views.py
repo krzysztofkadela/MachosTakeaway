@@ -5,17 +5,28 @@ from .forms import CustomerCommentForm
 from .models import CustomerComment
 from .forms import CustomLoginForm
 from django.contrib.auth.decorators import login_required
-
+import os
 
 # Create your views here.
 
-
+#index view using varible for google map API key
 def index(request):
+    google_maps_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
     """Fetch the last 10 approved comments that are updated most recently."""
     comments = CustomerComment.objects.filter(is_approved=True).order_by('-updated_on')[:10]
-    return render(request, 'mainpage/index.html', {'comments': comments})  # Render the homepage template with comments
+    # Use context 
+    context = {
+        'comments': comments,
+        'google_maps_api_key': google_maps_api_key  # Add Google Maps API key to context
+    }
 
+    return render(request, 'mainpage/index.html', context)  # Render the homepage template with comments
 
+# original index view no google map API key
+def indexorg(request):
+    """Fetch the last 10 approved comments that are updated most recently."""
+    comments = CustomerComment.objects.filter(is_approved=True).order_by('-updated_on')[:10]
+    return render(request, 'mainpage/index.html', {'comments': comments}, )  # Render the homepage template with comments
 
 @login_required  # Ensure only logged-in users can access this view
 def add_comment(request):

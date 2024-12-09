@@ -20,12 +20,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- reservations for user-->
                             {% for reservation in reservations %}
                             <tr>
                                 <td>{{ reservation.booking_date }}</td>
                                 <td>{{ reservation.booking_time }}</td>
                                 <td>{{ reservation.number_of_guests }}</td>
                                 <td>
+                                    <!-- reservation status -->
                                     {% if reservation.is_approved %}
                                         <span class="badge bg-success">Approved</span>
                                     {% else %}
