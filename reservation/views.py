@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import ReservationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
+from .models import Reservation # import Reservation modal to display reservations.
 
 @login_required  # Ensures the user is logged in
 def make_reservationold(request):
@@ -19,9 +19,9 @@ def make_reservationold(request):
 
     return render(request, 'reservation/make_reservation.html', {'form': form})
 
-
 @login_required  # Ensures the user is logged in
 def make_reservation(request):
+    reservations = Reservation.objects.filter(user=request.user).order_by('-booking_date', '-booking_time')
     if request.method == 'POST':
         form = ReservationForm(request.POST)
         if form.is_valid():
@@ -33,4 +33,7 @@ def make_reservation(request):
     else:
         form = ReservationForm()
 
-    return render(request, 'reservation/make_reservation.html', {'form': form})
+    return render(request, 'reservation/make_reservation.html', {
+        'form': form,
+        'reservations': reservations  # Pass the reservations to the template
+    })

@@ -1,6 +1,51 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<!-- Reservations Section -->
+<section class="reservations_section layout_padding">
+    <div class="container">
+        <div class="heading_container">
+            <h2>Your Reservations</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                {% if reservations %}
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Reservation Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Number of Guests</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for reservation in reservations %}
+                            <tr>
+                                <td>{{ reservation.booking_date }}</td>
+                                <td>{{ reservation.booking_time }}</td>
+                                <td>{{ reservation.number_of_guests }}</td>
+                                <td>
+                                    {% if reservation.is_approved %}
+                                        <span class="badge bg-success">Approved</span>
+                                    {% else %}
+                                        <span class="badge bg-warning">Awaiting Approval</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No reservations found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end reservations section -->
+
+
 <!-- book section -->
 <section class="book_section layout_padding">
     <div class="container">
