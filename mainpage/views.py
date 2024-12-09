@@ -97,12 +97,13 @@ def edit_comment(request, comment_id):
         if form.is_valid():
             form.save()  # Save the updated comment to the database
             messages.success(request, "Your comment has been updated successfully!")
-            return redirect('index')  # Redirect to the homepage or appropriate page
+            return redirect('index')  # Redirect to the homepage
     else:
         form = CustomerCommentForm(instance=comment)  # Create a form instance with the comment data
 
     return render(request, 'edit_comment.html', {'form': form, 'comment': comment})
 
+# Delete comments
 @login_required
 def delete_comment(request, comment_id):
     comment = get_object_or_404(CustomerComment, id=comment_id, user=request.user)
