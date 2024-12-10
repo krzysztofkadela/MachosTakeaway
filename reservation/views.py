@@ -39,7 +39,7 @@ def make_reservation(request):
     })
 
 @login_required
-def cancel_reseervation(requst, reservation_id):
+def cancel_reservation(requst, reservation_id):
     try:
         reservation = Reservation.objects.get(id=reservation_id, user=requst.user) # Get reservation for user request
         reservation.delete() # delete reservation
