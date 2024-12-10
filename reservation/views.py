@@ -37,3 +37,14 @@ def make_reservation(request):
         'form': form,
         'reservations': reservations  # Pass the reservations to the template
     })
+
+@login_required
+def cancel_reseervation(requst, reservation_id):
+    try:
+        reservation = Reservation.objects.get(id=reservation_id, user=requst.user) # Get reservation for user request
+        reservation.delete() # delete reservation
+        messages.success(requst, 'Reservation has been cancelled successfully!')
+    except Reservation.DoesNotExist:
+        messages.error(requst, 'Reservation not found or you do not have permission to cancel it.')
+
+    return redirect('make_reservation') #redirect back to the reservation form page.  
