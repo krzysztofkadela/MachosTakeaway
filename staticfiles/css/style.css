@@ -1021,7 +1021,7 @@ a:focus {
 .footer_section .footer-info p a {
   color: inherit;
 }
-/*# sourceMappingURL=style.css.map */
+/*custom css */
 
 .custom_button {
   background-color: #ffc107; /* Yellow background */
@@ -1043,4 +1043,24 @@ a:focus {
   height: auto;        /* Maintain aspect ratio */
   object-fit: cover;   /* Cover the area of the box */
   transform: translate(-50%, -50%); /* Adjust for offset */
+}
+
+.custom_button_green {
+  background-color: #a8c65f;
+    border-radius: 10px;     /* Rounlight green background */
+    border:2px yellow; 
+    padding: 10px 20px;      /* Padding for button */
+    color: rgb(16, 1, 1);  /* Text color */
+    font-size: 12px;         /* Font size */
+    font-weight: 600;
+    cursor: pointer;          /* Pointer cursor on hover */
+}
+
+.custom_button_cancel{
+  margin-top: 15px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 10px 55px;
+  color: #ffffff;
+  border-radius: 45px;
 }
