@@ -16,12 +16,18 @@
       <img src="{% static 'images/client1.jpg' %}" alt="" class="box-img">
     </div>
 
-    <!-- Add comment Form -->
-    <form method="POST" class="mb-4">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <button type="submit" class="btn custom_button">Submit Comment</button>
-    </form>
+   <!-- Add comment Form -->
+   <div class="row justify-content-center mb-4">
+    <div class="col-md-8">
+      <h2 class="text-center mb-3">Leave Your Comment</h2> <!-- H3 heading for the form -->
+      <form method="POST" class="form-group">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn custom_button ">Submit Comment</button>
+      </form>
+    </div>
+  </div>
+  <!-- Add comment Form end-->
 
     <div class="row">
       <!-- Use Bootstrap's grid system to create rows -->
