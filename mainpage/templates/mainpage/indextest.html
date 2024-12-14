@@ -521,42 +521,6 @@
         </div>
     </div>
     <!-- End Registration Prompt Modal -->
-
-    <!-- Display messages for 5 sec -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const alerts = document.querySelectorAll('.auto-close-alert');
-            alerts.forEach(alert => {
-                setTimeout(() => {
-                    alert.classList.remove('show'); // Remove the 'show' class to hide the alert
-                    alert.classList.add('fade'); // Add 'fade' class to smoothly fade it out
-                    // Remove from DOM
-                    setTimeout(() => {
-                        alert.remove(); //  remove the alert from the DOM
-                    }, 500); // for css transmition
-                }, 5000); // Time in milliseconds (5000 ms = 5 seconds)
-            });
-        });
-    </script>
-    <!-- End Display messages for 5 sec -->
-    <!-- Book Table Link -->
-    <script>
-        // Assuming user.is_authenticated will output properly as true or false
-        const userIsAuthenticated = "{% if user.is_authenticated %}true{% else %}false{% endif %}";
-        // Set the URL for the booking page
-        const bookingPageUrl = "{% url 'make_reservation' %}";
-
-        document.getElementById('bookTableLink').onclick = function (event) {
-            event.preventDefault(); // Prevent default link behavior
-            if (userIsAuthenticated === 'true') { // Check string equality for true
-                // Redirect to the booking page if user is authenticated
-                window.location.href = bookingPageUrl;
-            } else {
-                // Show the registration prompt modal if user is not authenticated
-                $('#registrationPromptModal').modal('show');
-            }
-        };
-    </script>
 <!-- initMap -->
 <script>
     function initMap() {
@@ -578,8 +542,6 @@
     document.head.appendChild(script);
 </script>
 
-    <!--End Book Table Link -->
-
     <!-- jQery -->
     <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
     <!-- popper js -->
@@ -597,10 +559,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
     <!-- custom js -->
     <script src="{% static 'js/custom.js' %}"></script>
-    <!-- Google Map -->
-
-    <!-- End Google Map -->
-
 </body>
 
 </html>

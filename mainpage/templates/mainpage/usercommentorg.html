@@ -22,26 +22,30 @@
       {{ form|crispy }}
       <button type="submit" class="btn custom_button">Submit Comment</button>
     </form>
+    <!-- Add comment Form end-->
 
-    <div class="row">  <!-- Use Bootstrap's grid system to create rows -->
+    <div class="row">
+      <!-- Use Bootstrap's grid system to create rows -->
       {% for comment in comments %}
-      <div class="col-md-4"> <!-- 3 comments per row -->
+      <div class="col-md-4">
+        <!-- 3 comments per row -->
         <div class="box">
           <div class="detail-box">
             <p>{{ comment.comment }}</p>
             <h6>{{ comment.user.username }}</h6>
             <p>{{ comment.comment_date|date:"F d, Y" }}</p>
             <p><strong>Status:</strong> {% if comment.is_approved %}Approved{% else %}Pending{% endif %}</p>
-            
+
             <!-- Edit Button -->
             {% if comment.user == user %}
             <button class="btn custom_button" onclick="toggleEditForm('{{ comment.id }}')">Edit</button>
             {% endif %}
 
             <!-- Delete Button -->
-            <form method="POST" action="{% url 'delete_comment' comment.id %}" style="display:inline;">
+            <form method="POST" action="{% url 'delete_comment' comment.id %}" style="display:inline;"
+              id="deleteForm-{{ comment.id }}" onsubmit="return confirmDelete();">
               {% csrf_token %}
-              <button type="submit" class="btn btn-danger">Delete</button>
+              <button type="button" class="btn btn-danger" onclick="confirmDelete('{{ comment.id }}')">Delete</button>
             </form>
           </div>
         </div>
@@ -65,10 +69,20 @@
 <!-- end comment section -->
 
 <script>
-function toggleEditForm(commentId) {
-  const editForm = document.getElementById(`editForm-${commentId}`);
-  editForm.style.display = (editForm.style.display === 'none' || editForm.style.display === '') ? 'block' : 'none';
-}
+  function toggleEditForm(commentId) {
+    const editForm = document.getElementById(`editForm-${commentId}`);
+    editForm.style.display = (editForm.style.display === 'none' || editForm.style.display === '') ? 'block' : 'none';
+  }
+</script>
+
+<script>
+  function confirmDelete(commentId) {
+    const confirmed = confirm("Are you sure you want to delete this comment?");
+    if (confirmed) {
+      // If confirmed, submit the form
+      document.getElementById(`deleteForm-${commentId}`).submit();
+    }
+  }
 </script>
 
 {% endblock %}

@@ -18,7 +18,7 @@ class CustomerCommentForm(forms.ModelForm):
         model = CustomerComment
         fields = ['comment']
         labels = {
-            'comment': 'How did we do?', # Comment title comment.
+            'comment': '', # Comment title comment.
         }
         widgets = {
             'comment': forms.Textarea(attrs={
