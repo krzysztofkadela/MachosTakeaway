@@ -208,13 +208,7 @@
         </div>
     </footer>
     <!-- footer section -->
-    <!--Book Table variables -->
-    <script>
-        // Pass template variables before loading custom.js
-        window.userIsAuthenticated = "{% if user.is_authenticated %}true{% else %}false{% endif %}";
-        window.bookingPageUrl = "{% url 'make_reservation' %}";
-    </script>
-    <!--Book Table variables end -->
+
     <!-- jQery -->
     <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
     <!-- popper js -->
@@ -259,6 +253,25 @@
     <!-- End Registration Prompt Modal -->
 
     <!-- Book Table Link -->
+    <script>
+        // Assuming user.is_authenticated will output properly as true or false
+        const userIsAuthenticated = "{% if user.is_authenticated %}true{% else %}false{% endif %}";
+        // Set the URL for the booking page
+        const bookingPageUrl = "{% url 'make_reservation' %}";
+
+        document.getElementById('bookTableLink').onclick = function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            if (userIsAuthenticated === 'true') { // Check string equality for true
+                // Redirect to the booking page if user is authenticated
+                window.location.href = bookingPageUrl;
+            } else {
+                // Show the registration prompt modal if user is not authenticated
+                $('#registrationPromptModal').modal('show');
+            }
+        };
+    </script>
+
+
     <!--End Book Table Link -->
 
 

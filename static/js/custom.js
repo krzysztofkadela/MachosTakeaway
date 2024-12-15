@@ -76,3 +76,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 5000); // Time in milliseconds (5000 ms = 5 seconds)
     });
 });
+
+//-- Book Table Link -->
+    
+document.getElementById('bookTableLink').onclick = function (event) {
+    event.preventDefault(); // Prevent default link behavior
+    if (window.userIsAuthenticated === 'true') { // Check string equality for true
+        // Redirect to the booking page if user is authenticated
+        window.location.href = window.bookingPageUrl;
+    } else {
+        // Show the registration prompt modal if user is not authenticated
+        $('#registrationPromptModal').modal('show');
+    }
+};
+    
