@@ -4,7 +4,7 @@
 {% url 'account_logout' as logout_url %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <!-- Basic -->
@@ -16,7 +16,7 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/png">
 
     <title> Machos Takeaway </title>
 
@@ -199,9 +199,9 @@
             </div>
             <div class="footer-info">
                 <p>
-                    &copy; <span id="displayYear"></span> All Rights Reserved By
+                    &copy; <span class="displayYear"></span> All Rights Reserved By
                     <a href="https://html.design/">Free Html Templates</a><br><br>
-                    &copy; <span id="displayYear"></span> Distributed By
+                    &copy; <span class="displayYear"></span> Distributed By
                     <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
                 </p>
             </div>
@@ -232,9 +232,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
     <!-- custom js -->
     <script src="{% static 'js/custom.js' %}"></script>
-    <!-- Google Map -->
-    <!-- End Google Map -->
-
+   
     <!-- Registration Prompt Modal -->
     <div class="modal fade" id="registrationPromptModal" tabindex="-1" role="dialog"
         aria-labelledby="registrationPromptLabel" aria-hidden="true">
@@ -258,8 +256,7 @@
     </div>
     <!-- End Registration Prompt Modal -->
 
-    <!-- Book Table Link -->
-    <!--End Book Table Link -->
+  
 
 
 </body>
