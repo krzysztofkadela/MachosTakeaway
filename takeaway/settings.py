@@ -29,7 +29,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1','8000-krzysztofka-machostakea-35f67se8832.ws-us116.gitpod.io/']
 
@@ -75,6 +75,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
 ]
+
+# X_Frame_Option allow only ui.dev
 X_FRAME_OPTIONS = 'ALLOW-FROM https://ui.dev'
 
 ROOT_URLCONF = 'takeaway.urls'

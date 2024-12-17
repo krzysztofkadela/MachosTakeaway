@@ -1,4 +1,6 @@
-# Naturest Oils Stock System
+# Machose Takeaway
+
+![Am_I_Responsive](/screenshots/responsive.png)
 
 A small company producing sauces needs a simple, uncomplicated system to control the amount of products in the warehouse.
 Basic tasks:
@@ -15,9 +17,6 @@ Checking total sales: product - quantity sold.
 
 Checking the total number of manufactured products: product - quantity produced.
 
-
-
-![Am_I_Responsive](/assets/images/responsive.png)
 
 ## Table of Contents
 
