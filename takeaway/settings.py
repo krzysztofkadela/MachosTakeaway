@@ -75,6 +75,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
 ]
+X_FRAME_OPTIONS = 'ALLOW-FROM https://ui.dev'
 
 ROOT_URLCONF = 'takeaway.urls'
 
