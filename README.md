@@ -1,28 +1,14 @@
-# Machose Takeaway
+# Machos Takeaway
 
 ![Am_I_Responsive](/screenshots/responsive.png)
 
-A small company producing sauces needs a simple, uncomplicated system to control the amount of products in the warehouse.
-Basic tasks:
-
-Adding manufactured products to the stock.
-
-Recording the quantity and type of products shipped from the warehouse.
-
-Adding new products to the main list.
-
-Checking stock levels.
-
-Checking total sales: product - quantity sold.
-
-Checking the total number of manufactured products: product - quantity produced.
+Machos Takeaway is a modern restaurant platform that offers a comprehensive experience for customers looking to enjoy delicious meals in a welcoming environment. 
+Our website allows users to easily book tables, leave comments, create accounts, check our diverse menu, and find information about our location and opening hours.
 
 
-## Table of Contents
-
-### [Stock System Structure](#stock-structure-1)
+### [Features](#features-1)
 ### [Features_coming_soon](#features-coming-soon)
-### [Technologies_used_in_the_project](#technologies-used-in-the-project)
+### [Technologies](#technologies-1)
 ### [Programs_&_Libraries_Used_in_project](#programs--libraries-used-in-project)
 ### [Testing](#testing-1)
 * [Validation_reports](#validation-reports)
@@ -33,10 +19,18 @@ Checking the total number of manufactured products: product - quantity produced.
  * [Other](#other)
 ---
 
-## Stock Structure:
+## Features:
 
-### Main Menu:
-![Main menu](/assets/images/main_menu.png) 
+### Main Page:
+![Main page](/screenshots/mainpage.png) 
+  * Main Menu Contains 4 options:
+    * 1 - Update Stock.
+    * 2 - Update Product List.
+    * 3 - Stock Report.
+    * 4 - Finish.
+
+### Main Page Offer Section:
+![Main page](/screenshots/mainpagedeals.png) 
   * Main Menu Contains 4 options:
     * 1 - Update Stock.
     * 2 - Update Product List.
@@ -102,9 +96,15 @@ Checking the total number of manufactured products: product - quantity produced.
         ![Quantity Out](/assets/images/qty_out_worksheet.png)
 
 ---
-## Technologies used in the project:
+## Technologies:
 
- * [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+ * Django: The main framework, providing a robust MVC architecture, ORM, and built-in admin interface.
+ * HTML/CSS: For developing the front-end layout and styling.
+ * Bootstrap: Create responsive design for website.
+ * PostgreSQL to cretate databes.
+ * Django Allauth: For user authentication, registration, and account management.
+ * Django Crispy Forms: To manage and render forms more easily and with a better user experience.
+ * Gunicorn For serving Django application in production environments.
  ---
 ## Programs Used in project:
 
