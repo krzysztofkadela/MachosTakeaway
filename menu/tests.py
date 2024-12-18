@@ -17,7 +17,7 @@ class MenuViewTests(TestCase):
         )
 
     def test_menu_view_status_code(self):
-        response = self.client.get(reverse('menu'))  # Use the name of your URL for the menu view
+        response = self.client.get(reverse('menu')) 
         self.assertEqual(response.status_code, 200)  # Check if the status code is 200 OK
 
     def test_menu_view_template(self):
@@ -33,6 +33,6 @@ class MenuViewTests(TestCase):
 class RedirectMenuViewTests(TestCase):
 
     def test_redirect_menu_html(self):
-        response = self.client.get(reverse('redirect_menu_html'))  # Use the name of your URL for the redirect
+        response = self.client.get(reverse('redirect_menu_html'))
         self.assertEqual(response.status_code, 302)  # Check for a redirect status code
         self.assertRedirects(response, reverse('menu'))  # Ensure it redirects to the 'menu' URL
