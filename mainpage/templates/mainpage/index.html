@@ -71,7 +71,7 @@
                             {% url 'menu' as menu_url %}
                             {% url 'about' as about_url %}
                             {% url 'make_reservation' as make_reservation_url %}
-                    
+
                             <li class="nav-item {% if request.path == index_url %}active{% endif %}">
                                 <a class="nav-link" href="{{ index_url }}">Home</a>
                             </li>
@@ -452,24 +452,26 @@
                             Machos Takeaway
                         </a>
                         <p>
-                            Necessary, making this the first true generator on the Internet. It uses a dictionary of
-                            over 200 Latin
-                            words, combined with
+                            Visit us at St. Martin's Square (Sw. Marcina), Poznań, Poland. This vibrant location is
+                            known for its beautiful surroundings and is a great spot to enjoy our delicious offerings.
                         </p>
                         <div class="footer_social">
-                            <a href="">
+                            <a href="https://www.facebook.com/machostakeaway" target="_blank" rel="noopener noreferrer">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a href="https://twitter.com/machostakeaway" target="_blank" rel="noopener noreferrer">
                                 <i class="fa fa-twitter" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a href="https://www.linkedin.com/in/machostakeaway" target="_blank"
+                                rel="noopener noreferrer">
                                 <i class="fa fa-linkedin" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a href="https://www.instagram.com/machostakeaway" target="_blank"
+                                rel="noopener noreferrer">
                                 <i class="fa fa-instagram" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a href="https://www.pinterest.com/machostakeaway" target="_blank"
+                                rel="noopener noreferrer">
                                 <i class="fa fa-pinterest" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -521,31 +523,34 @@
     </div>
     <!-- End Registration Prompt Modal -->
 
-<script>
-    // Pass template variables before loading custom.js
-    window.userIsAuthenticated = "{% if user.is_authenticated %}true{% else %}false{% endif %}";
-    window.bookingPageUrl = "{% url 'make_reservation' %}";
-</script>
-<!-- initMap -->
-<script>
-    function initMap() {
-        const location = { lat: -34.397, lng: 150.644 };
-        const map = new google.maps.Map(document.getElementById("googleMap"), {
-            zoom: 8,
-            center: location,
-        });
+    <script>
+        // Pass template variables before loading custom.js
+        window.userIsAuthenticated = "{% if user.is_authenticated %}true{% else %}false{% endif %}";
+        window.bookingPageUrl = "{% url 'make_reservation' %}";
+    </script>
+    <!-- initMap -->
+    <script>
+        function initMap() {
+            const location = {
+                lat: 52.4064,
+                lng: 16.9342
+            };
+            const map = new google.maps.Map(document.getElementById("googleMap"), {
+                zoom: 8,
+                center: location,
+            });
 
-        const marker = new google.maps.Marker({
-            position: location,
-            map: map,
-        });
-    }
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+        }
 
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap`;
-    script.async = true;
-    document.head.appendChild(script);
-</script>
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap`;
+        script.async = true;
+        document.head.appendChild(script);
+    </script>
 
     <!--End Book Table Link -->
 
@@ -554,7 +559,7 @@
     <!-- popper js -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
+        </script>
     <!-- bootstrap js -->
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <!-- owl slider -->
