@@ -4,6 +4,8 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
+
+# Menu items model with category.
 class MenuItem(models.Model):
     CATEGORY_CHOICES = [
         ('burger', 'Burger'),

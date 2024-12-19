@@ -78,7 +78,7 @@ def custom_logout(request):
 @login_required
 def user_comments(request):
     # Fetch the last 10 approved comments
-    comments = CustomerComment.objects.filter(user=request.user, is_approved=True).order_by('-comment_date')[:10]
+    comments = CustomerComment.objects.filter(user=request.user).order_by('-comment_date')
     
     if request.method == 'POST':
         # Handle the form submission
@@ -92,7 +92,7 @@ def user_comments(request):
                  request, messages.SUCCESS,
                 'Comment submitted and awaiting approval'
     )
-            return redirect('user_comments')  # Redirect to comments page or wherever needed
+            return redirect('user_comments')  # Redirect
     else:
         form = CustomerCommentForm()
 

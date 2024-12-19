@@ -4,6 +4,7 @@ from .models import MenuItem
 
 # Create your tests here.
 
+# Menu item test
 class MenuViewTests(TestCase):
     
     def setUp(self):
