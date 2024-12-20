@@ -4,10 +4,9 @@
 
 Machos Takeaway is a modern restaurant platform that offers a comprehensive experience for customers looking to enjoy delicious meals in a welcoming environment. 
 Our website allows users to easily book tables, leave comments, create accounts, check our diverse menu, and find information about our location and opening hours.
-
+Additionally, the site features an admin interface built with Django, which enables administrators to manage reservations, oversee customer feedback, and approve or reject comments. The admin panel also allows for easy updates to the restaurant’s menu and operational settings, ensuring that everything is current and well-organized.
 
 ### [Features](#features-1)
-### [Features_coming_soon](#features-coming-soon)
 ### [Technologies](#technologies-1)
 ### [Programs_&_Libraries_Used_in_project](#programs--libraries-used-in-project)
 ### [Testing](#testing-1)
@@ -19,38 +18,27 @@ Our website allows users to easily book tables, leave comments, create accounts,
  * [Other](#other)
 ---
 
-## Features:
+# Features:
 
-### Main Page:
+## Main Page:
 ![Main page](/screenshots/mainpage.png) 
-  * Main Menu Contains 4 options:
-    * 1 - Update Stock.
-    * 2 - Update Product List.
-    * 3 - Stock Report.
-    * 4 - Finish.
 
 ### Main Page Offer Section:
 ![Main page](/screenshots/mainpagedeals.png) 
-  * Main Menu Contains 4 options:
-    * 1 - Update Stock.
-    * 2 - Update Product List.
-    * 3 - Stock Report.
-    * 4 - Finish.
+  * Displays current promotions
+    
+### Location:
+![Update menu](/screenshots/location2.png)
+  * Using Google maps to display locations:
 
-### Update Stock Menu:
-![Update menu](/assets/images/update_stock_menu.png)
-  * Update Stock Menu Contains 3 option:
-   * 1 - Goods In
-   * 2 - Goods Out
-   * 3 - Return to Main Menu
+### Customers Comments Section:
+  ![Report Menu](/screenshots/mainpagcomments.png)
+   * Customer comments.
 
-### Report Menu:
-  ![Report Menu](/assets/images/report_menu.png)
-   * Report Contains 4 Options
-      * 1 - Full Stock By Product.
-      * 2 - Total Production.
-      * 3 - Total Sale.
-      * 4 - Return
+
+## Navbar :
+  ![Report Menu](/screenshots/navbarlogin.png)
+   * Depending on the user's status, different sharing options
 
 
 ## Features coming soon:
