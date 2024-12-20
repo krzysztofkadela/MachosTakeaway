@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Reservation # import Reservation modal to display reservations.
 from datetime import datetime, timedelta
 
-
+# Reservation possible chose passed date
 @login_required  # Ensures the user is logged in
 def make_reservationold(request):
     reservations = Reservation.objects.filter(user=request.user).order_by('-booking_date', '-booking_time')
