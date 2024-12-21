@@ -104,6 +104,8 @@ Additionally, the site features an admin interface built with Django, which enab
  * Django Allauth: For user authentication, registration, and account management.
  * Django Crispy Forms: To manage and render forms more easily and with a better user experience.
  * Gunicorn For serving Django application in production environments.
+ * Jest used for testing front-end functionalities in the application.
+ * Babel JavaScript compiler to use the latest JavaScript features, ensuring compatibility across different browsers.
  ---
 ## Programs Used in project:
 
@@ -176,14 +178,40 @@ Additionally, the site features an admin interface built with Django, which enab
 
 </table>
 
-* Testing correct inputs and worksheet update for Product List:
-  * Product Name, max 20 characters and using only letters and space, working correctly.
-  * Product Name Size chose only from the list working correct, wrong input warning apears.
-  * Product barcode: 13 characters and only numbers after wrong input warning to use correct values.
-  * After all inputs are correct Product List worksheets are updated correctly, and new products are added to the list.
-* Testing correct inputs and worksheet update for Goods In and Goods Out.
-  * App displaying all products one by one and asking for numbers only, warning if incorrect input.
-  * After all quantitys are collected, worksheets correctly updated.
+## Automated Testing
+
+The Machos Takeaway project utilizes Django's built-in testing framework to ensure that all key functionalities work as expected. Below are the details of the tests implemented for various components of the application.
+
+### Tests Overview
+
+- **Reservation Tests**:
+  - **`test_make_reservation`**: Verifies that a logged-in user can successfully create a reservation and receives a success message.
+  - **`test_reservation_with_short_notice`**: Checks that a user cannot make a reservation less than 24 hours in advance, displaying an appropriate warning message.
+  - **`test_cancel_reservation`**: Confirms that users can cancel their own reservations and receive a success message.
+  - **`test_cancel_nonexistent_reservation`**: Tests that attempting to cancel a non-existent reservation results in the appropriate error handling.
+
+- **Menu Tests**:
+  - **`test_menu_view_status_code`**: Ensures that the menu view loads successfully with a status code of 200.
+  - **`test_menu_view_template`**: Checks that the correct template is used to display the menu.
+  - **`test_menu_view_context`**: Verifies that the context contains the expected menu items.
+
+- **Main Page Tests**:
+  - **`test_main_page_loads`**: Tests that the main page loads successfully with a status code of 200.
+  - **`test_main_page_template_used`**: Ensures that the correct template is used when rendering the main page.
+  - **`test_main_page_context`**: Checks that the context of the main page contains the expected number of approved comments.
+
+- **JavaScript Tests**:
+  - **Alert Functionality**: 
+    - The JavaScript tests verify that auto-closing alert messages disappear after a specified time and can be smoothly faded out.
+    - Tests utilize **Jest** and **@testing-library/jest-dom** to ensure DOM manipulation occurs as expected.
+
+  ![Allerttestjs](/screenshots/allerttestjs.png)
+
+### Running the Tests
+
+   To run all tests in the Django project, use the following command:
+
+    python manage.py test
 
 ## Deployment:
 
