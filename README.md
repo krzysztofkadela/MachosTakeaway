@@ -27,63 +27,28 @@ Additionally, the site features an admin interface built with Django, which enab
 ![Main page](/screenshots/mainpagedeals.png) 
   * Displays current promotions
     
-### Location:
+### Main Page Location Section:
 ![Update menu](/screenshots/location2.png)
   * Using Google maps to display locations:
 
-### Customers Comments Section:
+### Main Page Customers Comments Section:
   ![Report Menu](/screenshots/mainpagcomments.png)
    * Customer comments.
-
+     * only displays the 10 most recent comments.
 
 ## Navbar :
   ![Report Menu](/screenshots/navbarlogin.png)
    * Depending on the user's status, different sharing options
 
+## About Page :
+  ![Report Menu](/screenshots/aboutpage.png)
+   * Info about restaurant
 
-## Features coming soon:
+## Menu Page :
+  ![Report Menu](/screenshots/menu.png)
+   * Displays the entire restaurant menu. 
 
-* Two levels of access:
-  *  Administrator(manager)
-  *  General User
 
-* New stock reports:
-  * To control raw materials usage.
----
-
-## How to use :
-
- * Main menu :
-    * From the main menu you can select 4 basic options after pressing the appropriate number on the keyboard and  
-      pressing 'ENTER', the application will go to the next section or will exit the program(4).
-      * After selecting option no. 1, the program will open a menu that will give you the option of updating stock levels.
-        * Update Stock Menu:
-          * '1' -  The program will display all products one by one with a question asking how many pieces to add to the warehouse.
-          * '2' - Displays all products individually with a question asking how many pieces were sent out.   
-          * '3' - Selecting the third option will return you to the previous menu.
-      * By selecting the option number 2  you can add another product to the list of products produced in Natures Oils, to do 
-         this you need to follow some rules which will be displayed in the terminal:
-        * Type and number of characters you can use when entering a new product name.
-        * The right size, choose from the size list.
-        * Appropriate barcode length.
-      * Option 3  report options:
-        * '1' - After selecting this option, the current stock status for each product will be displayed.
-        * '2' - Total number of products produced for each of the list.
-        * '3' - Total number of products sold.
-        * '4' - Return to previous menu
-
-### Data storage :
-   * The app uses 'Google Sheets to store all data:
-      * "Product list" worksheet store all products name, size and barcode, can be update by user: 
-        ![Product List](/assets/images/product_list_worksheet.png)
-      * "Product Size" list worksheet, can't be update from app by user:
-        ![Product Size](/assets/images/product_size_list.png)
-      * "Quantity In" worksheet, store inputs from user about production for each product.
-        ![Quantity In](/assets/images/goods_in_worksheet.png)
-      * "Quantity Out" worksheet to store all inputs for products send out from warehouse.
-        ![Quantity Out](/assets/images/qty_out_worksheet.png)
-
----
 ## Technologies:
 
  * Django: The main framework, providing a robust MVC architecture, ORM, and built-in admin interface.
@@ -108,9 +73,14 @@ Additionally, the site features an admin interface built with Django, which enab
 ## Testing:
 
 ### Validation reports:
-  * ![Valid](/assets/images/validator.png)
+  #### Main page html validation report:
+  * ![mainpage](/screenshots/htmlmainpage.png)
+  #### About page html validation report:
+  * ![aboutnpage](/screenshots/htmlabout.png)
+  #### Resrevation page html validation report:
+  * ![reservationnpage](/screenshots/htmlreservation.png)
 
-  * No errors.
+  * No errors found in html.
   
 ### Manual Testing:
 
@@ -122,8 +92,8 @@ Additionally, the site features an admin interface built with Django, which enab
     <th>Result In Correct Input</th>
   </tr>
   <tr>
-    <td>Main Menu Choice 1</td>
-    <td>Pass to section Update Stock</td>
+    <td>Register new user navbar link</td>
+    <td>Display</td>
     <td>Number 1 and Enter section UpdateStock Open</td>
     <td>Letter 'A', Number 5 warning and question for correct input.</td>
   </tr>
