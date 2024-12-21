@@ -24,29 +24,75 @@ Additionally, the site features an admin interface built with Django, which enab
 ![Main page](/screenshots/mainpage.png) 
 
 ### Main Page Offer Section:
-![Main page](/screenshots/mainpagedeals.png) 
+![Deals](/screenshots/mainpagedeals.png) 
   * Displays current promotions
     
 ### Main Page Location Section:
-![Update menu](/screenshots/location2.png)
+![MainPageLocation](/screenshots/location2.png)
   * Using Google maps to display locations:
 
 ### Main Page Customers Comments Section:
-  ![Report Menu](/screenshots/mainpagcomments.png)
+  ![MainPComments](/screenshots/mainpagcomments.png)
    * Customer comments.
      * only displays the 10 most recent comments.
 
 ## Navbar :
-  ![Report Menu](/screenshots/navbarlogin.png)
+  ![Navbar](/screenshots/navbarlogin.png)
    * Depending on the user's status, different sharing options
 
 ## About Page :
-  ![Report Menu](/screenshots/aboutpage.png)
+  ![About](/screenshots/aboutpage.png)
    * Info about restaurant
 
 ## Menu Page :
-  ![Report Menu](/screenshots/menu.png)
+  ![Menu](/screenshots/menu.png)
    * Displays the entire restaurant menu. 
+
+## Account for users :
+
+  ### Registration form:
+
+  ![Registration](/screenshots/registerform.png)
+   * New user is able to create account.
+   * Acount is needed to add comment and make table reservation.
+
+  ### Login form for registered user:
+
+  ![signin](/screenshots/sininform.png)
+   * Registered user can login.
+
+  ### Logout form:
+
+  ![Signout](/screenshots/signout.png)
+   * For user to logout from his account.
+
+## Options for logged in users:
+  
+   ### Make reservation (book table):
+
+  ![Makereservation](/screenshots/makereservation.png)
+   * User can easy make reservation by using reservation form.
+
+  ### Manage reservation see reservation status:
+
+  ![Reservation](/screenshots/reservation.png)
+   * User can easy check reservation status can also cancel reservation.
+
+  ### Leave a comment:
+
+  ![Comments](/screenshots/comments.png)
+   * In this section user can add/delete or edit comments.
+   * Only comments done by loged in user are displayed in this section.
+   * User can only change his comments.
+
+
+## Footer section:
+   
+   ![Footer](/screenshots/footer.png)
+   * Includes contact number, location, email adrres.
+   * Address
+   * Opening hours
+
 
 
 ## Technologies:
@@ -141,24 +187,21 @@ Additionally, the site features an admin interface built with Django, which enab
 
 ## Deployment:
 
-### This app was deployed using Code Institute's mock terminal for Heroku
+### This app was deployed on Heroku
 
    #### Simple steps:
 
    * Fork or clone this repository
    * Create a new Heroku app
-   * Set the build packs to Python and NodeJs in that order
    * Link the heroku app to the repository
    * Click on Deploy
-   * Live "Natures Oils Stock System" app you can find by clicking this link:
-     [heroku](https://naturesoilsstock-9ab4d188a6d6.herokuapp.com/)
+   * Live "Machos Takeway" app you can find by clicking this link:
+     [heroku](https://machostakaeaway-202ce3a8c774.herokuapp.com/)
 
 
 ## Bugs Detected:
-  * When testing the function  "update_stock(choice, product_list)" and function "update worksheet()",
-    there was a problem with the correct data being retrieved from the "Tuple" that the first function returned.
-    The worksheet was not updated and a message about incorrect data appeared.
-  * The problem was solved by changing the 'Tuple' to a 'List' and converting the numeric input to integer.
+  * ---
+  * --
   
 ## Unfixed Bugs:
   * All detected bugs have been fixed.
@@ -166,6 +209,8 @@ Additionally, the site features an admin interface built with Django, which enab
 ## Credits:
   *  To check the correct operation of most functions, the following was used:
      [Python Tutor](https://pythontutor.com/visualize.html#mode=edit)
-  *  Google sheets to store data.
+  *  Template use for a project was downloaded from https://themewagon.com/themes/
+
 ### Other:
+  
    * Much of the information about python was obtained from https://www.w3schools.com/python/.
