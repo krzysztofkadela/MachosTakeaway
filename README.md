@@ -131,49 +131,74 @@ Additionally, the site features an admin interface built with Django, which enab
   * No errors found in html.
   
 ### Manual Testing:
+ #### Register new user
 
 <table>
   <tr>
     <th>User Choice</th>
     <th>Expected Action</th>
     <th>Result Correct Input</th>
-    <th>Result In Correct Input</th>
+    <th>Result Incorrect Input</th>
   </tr>
   <tr>
     <td>Register new user navbar link</td>
-    <td>Display</td>
-    <td>Number 1 and Enter section UpdateStock Open</td>
-    <td>Letter 'A', Number 5 warning and question for correct input.</td>
+    <td>Display the registration form</td>
+    <td>Form displays</td>
+    <td>No wrong input required is only link.</td>
   </tr>
   <tr>
-    <td>Main Menu Choice 2</td>
-    <td>Pass to section "Update Product List".</td>
-    <td>Number 2 pick, correct section open.</td>
-    <td>Rendom String inputed, warning and question for correct input .</td>
+    <td> Fill out registration form</td>
+    <td>Complete the form and submit .</td>
+    <td>A success message confirming registration appears</td>
+    <td>Error message indicating what fields need correction.</td>
   </tr>
   <tr>
-    <td>Main Menu Choice 3</td>
-    <td>Pass to section "Stock Report"</td>
-    <td>Number 3 pick, correct section open.</td>
-    <td>Number 10 choose , wrong number warning appear.</td>
+    <td>Correctly filled email address </td>
+    <td>Check email field for valid email format</td>
+    <td>Acknowledgment of successful email entry</td>
+    <td>Error about invalid email format appears </td>
   </tr>
   <tr>
-    <td>Main Menu Choice 4</td>
-    <td>Close program.</td>
-    <td>Affter choose '4' program finish.</td>
-    <td>Letter q , wrong input warning, "please chose number from 1-4" appear.</td>
+    <td>Password confirmation</td>
+    <td>Confirm passwords match</td>
+    <td>Registration is successful; user is created</td>
+    <td>Error indicating passwords do not match appears</td>
+  </tr>
+
+</table>
+
+#### Logged-in User Adds Comment
+
+<table>
+  <tr>
+    <th>User Choice</th>
+    <th>Expected Action</th>
+    <th>Result Correct Input</th>
+    <th>Result Incorrect Input</th>
   </tr>
   <tr>
-    <td>Update Stock Menu</td>
-    <td>Choose 1/2 open correct section.</td>
-    <td>After pick nuber 1 or 2 correct secton open.</td>
-    <td>Wrong input, like string or number biger then 3, warning apears all working ok.</td>
+    <td>Navigate to comments section</td>
+    <td>Access the comments feature</td>
+    <td>Displays the current comments and an input form to add new comments</td>
+    <td></td>
   </tr>
   <tr>
-    <td>Report Menu</td>
-    <td>Choose 1/2/ print to the terminal correct report.</td>
-    <td>With correct inputs all reports were printed correctly, and number 4 returned to main menu.</td>
-    <td>Wrong input, like string or number biger then 3, warning apears all working ok.</td>
+    <td> Fill out registration form</td>
+    <td>Complete the form and submit .</td>
+    <td>A success message confirming registration appears</td>
+    <td>Error message indicating what fields need correction.</td>
+  </tr>
+  <tr>
+    <td>Correctly filled email address </td>
+    <td>Check email field for valid email format</td>
+    <td>Acknowledgment of successful email entry</td>
+    <td>Error about invalid email format appears </td>
+  </tr>
+  <tr>
+    <td>Password confirmation</td>
+    <td>Confirm passwords match</td>
+    <td>Registration is successful; user is created</td>
+    <td>Error indicating passwords do not match appears</td>
   </tr>
 
 </table>
