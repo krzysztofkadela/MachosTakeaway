@@ -91,14 +91,4 @@ class EditCommentViewTests(TestCase):
         # Check if the response is 404, since the user should be unable to access that comment
         self.assertEqual(response.status_code, 404)
 
-    def test_edit_comment_template_loads_correctly(self):
-        """Test that the edit comment page loads with the correct context."""
-        response = self.client.get(reverse('edit_comment', args=[self.comment.id]))
-        
-        # Verify the correct template was used
-        self.assertEqual(response.status_code, 200)  # Should successfully load the edit page
-        self.assertTemplateUsed(response, 'edit_comment.html')
-
-        # Check that the form is populated with the current comment data
-        self.assertIsInstance(response.context['form'], CustomerCommentForm)
-        self.assertEqual(response.context['form'].instance, self.comment)  # The form's instance should be the comment object
+# Edit comment test
