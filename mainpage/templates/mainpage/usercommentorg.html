@@ -29,12 +29,10 @@
         </div>
         <!-- Add Comment Form end -->
 
-        <div class="row justify-content-center">
-            <!-- Center all comments -->
+        <div class="row justify-content-center"> <!-- Center all comments -->
             <!-- Grid for Displaying Comments -->
             {% for comment in comments %}
-            <div class="col-md-8 mb-4">
-                <!-- Set width to 8 columns -->
+            <div class="col-md-8 mb-4"> <!-- Set width to 8 columns -->
                 <!-- Single Comment Box -->
                 <div class="box">
                     <div class="detail-box">
@@ -49,24 +47,26 @@
                         {% endif %}
 
                         <!-- Delete Button -->
-                        <form method="POST" action="{% url 'delete_comment' comment.id %}" style="display:inline;"
-                            id="deleteForm-{{ comment.id }}" onsubmit="return confirmDelete();">
+                        <form method="POST" action="{% url 'delete_comment' comment.id %}" style="display:inline;" id="deleteForm-{{ comment.id }}" onsubmit="return confirmDelete();">
                             {% csrf_token %}
-                            <button type="button" class="btn btn-danger"
-                                onclick="confirmDelete('{{ comment.id }}')">Delete</button>
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete('{{ comment.id }}')">Delete</button>
                         </form>
                     </div>
                 </div>
 
-                <!-- Edit form (initially hidden) -->
-                <div id="editForm-{{ comment.id }}" style="display:none;">
-                    <form method="POST" action="{% url 'edit_comment' comment.id %}">
-                        {% csrf_token %}
-                        <textarea name="comment" rows="3" class="form-control">{{ comment.comment }}</textarea>
-                        <button type="submit" class="btn btn-success">Update</button>
-                        <button type="button" class="btn btn-secondary"
-                            onclick="toggleEditForm('{{ comment.id }}')">Cancel</button>
-                    </form>
+                <!-- Edit Form (initially hidden) -->
+                <div id="editForm-{{ comment.id }}" class="row justify-content-center mb-4" style="display:none;">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <h2 class="text-center mb-3">Edit Your Comment</h2> <!-- Heading for the edit form -->
+                            <form method="POST" class="form-group">
+                                {% csrf_token %}
+                                <textarea name="comment" class="form-control" rows="3">{{ comment.comment }}</textarea>
+                                <button type="submit" class="btn custom_button">Update Comment</button>
+                                <button type="button" class="btn btn-secondary" onclick="toggleEditForm('{{ comment.id }}')">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
             </div> <!-- End of comment column -->
@@ -80,7 +80,7 @@
     function toggleEditForm(commentId) {
         const editForm = document.getElementById(`editForm-${commentId}`);
         editForm.style.display = (editForm.style.display === 'none' || editForm.style.display === '') ? 'block' :
-            'none';
+        'none';
     }
 </script>
 <!-- Display edit form end-->

@@ -1,58 +1,29 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-from .forms import CustomerCommentForm
-from .models import CustomerComment
-from .forms import CustomLoginForm
 from django.contrib.auth.decorators import login_required
 import os
 
-# Create your views here.
+from .forms import CustomerCommentForm, CustomLoginForm
+from .models import CustomerComment
 
-#index view using varible for google map API key
+
 def index(request):
+    """
+    Homepage view, fetching the last 10 approved comments.
+    """
     google_maps_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
-    """Fetch the last 10 approved comments that are updated most recently."""
     comments = CustomerComment.objects.filter(is_approved=True).order_by('-updated_on')[:10]
-    # Use context 
+    
     context = {
         'comments': comments,
-        'google_maps_api_key': google_maps_api_key  # Add Google Maps API key to context
+        'google_maps_api_key': google_maps_api_key
     }
-
-    return render(request, 'mainpage/index.html', context)  # Render the homepage template with comments
-
-# original index view no google map API key
-def indexorg(request):
-    """Fetch the last 10 approved comments that are updated most recently."""
-    comments = CustomerComment.objects.filter(is_approved=True).order_by('-updated_on')[:10]
-    return render(request, 'mainpage/index.html', {'comments': comments}, )  # Render the homepage template with comments
-
-@login_required  # Ensure only logged-in users can access this view
-def add_comment(request):
-    """View to handle adding a new comment."""
-    if request.method == 'POST':
-        form = CustomerCommentForm(request.POST)
-        if form.is_valid():
-            # Create a new comment instance but don't save it to the database yet
-            comment = form.save(commit=False)
-            comment.user = request.user  # Set the user to the currently logged-in user
-            if request.user.is_superuser:
-                comment.is_approved = True
-                messages.success(request, "Your comment has been submitted successfully!")
-            else:
-                comment.is_approved = False
-                messages.info(request, "Your comment has been submitted and is awaiting approval.")
-            comment.save()  # Save the comment in the database
-            return redirect('index')  # Redirect to the homepage or wherever appropriate
-    else:
-        form = CustomerCommentForm()  # Create an empty form instance
-
-    return render(request, 'add_comment.html', {'comment_form': form})  # Render a page for adding comments (can be a separate template)
+    return render(request, 'mainpage/index.html', context)
 
 
 def custom_login(request):
-    """Handle login with CustomLoginForm."""
+    """Handle user login using CustomLoginForm."""
     if request.method == 'POST':
         form = CustomLoginForm(data=request.POST)
         if form.is_valid():
@@ -61,10 +32,10 @@ def custom_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, "You have logged in successfully!")  # Display success message
-                return redirect('index')  # Redirect to the homepage
+                messages.success(request, "You have logged in successfully!")
+                return redirect('index')
             else:
-                messages.error(request, "Invalid username or password.")  # Notify of login failure
+                messages.error(request, "Invalid username or password.")
     else:
         form = CustomLoginForm()
     return render(request, 'login.html', {'form': form})
@@ -72,52 +43,99 @@ def custom_login(request):
 def custom_logout(request):
     """Log out the user and redirect to the homepage."""
     logout(request)
-    messages.success(request, "You have logged out successfully.")  # Message after logout
-    return redirect('index')  # Redirect after logging out
+    messages.success(request, "You have logged out successfully.")
+    return redirect('index')
+
+
+@login_required
+def add_comment(request):
+    """
+    View for adding a new comment.
+    If the user is a superuser, the comment is auto-approved.
+    Otherwise, it awaits approval.
+    """
+    if request.method == 'POST':
+        form = CustomerCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            # Auto-approve if superuser:
+            if request.user.is_superuser:
+                comment.is_approved = True
+                messages.success(request, "Your comment has been submitted successfully!")
+            else:
+                comment.is_approved = False
+                messages.info(request, "Your comment has been submitted and is awaiting approval.")
+            comment.save()
+            return redirect('index')
+    else:
+        form = CustomerCommentForm()
+    return render(request, 'add_comment.html', {'comment_form': form})
+
 
 @login_required
 def user_comments(request):
-    # Fetch the last 10 approved comments
+    """
+    Display the current user's comments (approved or unapproved).
+    Allow user to submit new comments.
+    """
     comments = CustomerComment.objects.filter(user=request.user).order_by('-comment_date')
     
     if request.method == 'POST':
-        # Handle the form submission
         form = CustomerCommentForm(request.POST)
         if form.is_valid():
             new_comment = form.save(commit=False)
-            new_comment.user = request.user  # Associate the comment with the logged-in user
-            new_comment.is_approved = False  # Keeps comment unapproved if not a superuser
+            new_comment.user = request.user
+            # Keep comment unapproved if not a superuser:
+            if request.user.is_superuser:
+                new_comment.is_approved = True
+                messages.success(request, "Your comment has been submitted successfully!")
+            else:
+                new_comment.is_approved = False
+                messages.info(request, "Comment submitted and awaiting approval.")
             new_comment.save()
-            messages.add_message(
-                 request, messages.SUCCESS,
-                'Comment submitted and awaiting approval'
-    )
-            return redirect('user_comments')  # Redirect
+            return redirect('user_comments')
     else:
         form = CustomerCommentForm()
 
-    return render(request, 'mainpage/usercomment.html', {'form': form, 'comments': comments})
+    return render(request, 'mainpage/usercomment.html', {
+        'form': form,
+        'comments': comments
+    })
+
 
 @login_required
 def edit_comment(request, comment_id):
-    """View to edit an existing comment."""
+    """
+    View to edit an existing comment that belongs to the logged-in user.
+    Using 'instance=comment' ensures we update instead of creating a new record.
+    """
     comment = get_object_or_404(CustomerComment, id=comment_id, user=request.user)
-
+    
     if request.method == 'POST':
         form = CustomerCommentForm(request.POST, instance=comment)
         if form.is_valid():
-            form.save()  # Save the updated comment to the database
+            form.save()
             messages.success(request, "Your comment has been updated successfully!")
-            return redirect('index')  # Redirect to the homepage
+            # Redirect to user_comments so user can see the updated comment:
+            return redirect('user_comments')
     else:
-        form = CustomerCommentForm(instance=comment)  # Create a form instance with the comment data
+        form = CustomerCommentForm(instance=comment)
+    
+    # If you have a separate template for editing:
+    # Provide 'edit_comment.html' or embed the form inline in usercomment.html
+    return render(request, 'edit_comment.html', {
+        'form': form,
+        'comment': comment
+    })
 
-    return render(request, 'edit_comment.html', {'form': form, 'comment': comment})
 
-# Delete comments
 @login_required
 def delete_comment(request, comment_id):
+    """
+    Delete an existing comment if it belongs to the logged-in user.
+    """
     comment = get_object_or_404(CustomerComment, id=comment_id, user=request.user)
     comment.delete()
     messages.success(request, "Comment deleted successfully!")
-    return redirect('user_comments')  # Redirect to the user comments view
+    return redirect('user_comments')
