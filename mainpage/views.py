@@ -108,26 +108,26 @@ def user_comments(request):
 def edit_comment(request, comment_id):
     """
     View to edit an existing comment that belongs to the logged-in user.
-    Using 'instance=comment' ensures we update instead of creating a new record.
+    After editing, if user is not superuser, mark comment as unapproved.
     """
     comment = get_object_or_404(CustomerComment, id=comment_id, user=request.user)
     
     if request.method == 'POST':
         form = CustomerCommentForm(request.POST, instance=comment)
         if form.is_valid():
-            form.save()
+            updated_comment = form.save(commit=False)
+            
+            # If user is not superuser, set is_approved=False
+            if not request.user.is_superuser:
+                updated_comment.is_approved = False
+
+            updated_comment.save()
             messages.success(request, "Your comment has been updated successfully!")
-            # Redirect to user_comments so user can see the updated comment:
-            return redirect('user_comments')
+            return redirect('user_comments')  # or wherever you want
     else:
         form = CustomerCommentForm(instance=comment)
     
-    # If you have a separate template for editing:
-    # Provide 'edit_comment.html' or embed the form inline in usercomment.html
-    return render(request, 'edit_comment.html', {
-        'form': form,
-        'comment': comment
-    })
+    return render(request, 'edit_comment.html', {'form': form, 'comment': comment})
 
 
 @login_required
