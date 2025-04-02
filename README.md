@@ -139,6 +139,34 @@ Additionally, the site features an admin interface built with Django, which enab
     * To deploy project.
  * [Am I Responsive](https://ui.dev/amiresponsive)
     * Screenshots for README.md file.
+
+ * ### Project Management:
+
+      #### Agile Methodology:
+
+      This project uses Agile methodology for managing tasks and tracking progress efficiently. We leverage GitHub Issues, Milestones, and a Kanban-style project board for clear organization and transparency.
+
+      #### MoSCoW Prioritization:
+
+      I have ategorize tasks and user stories using the MoSCoW method, clearly indicating their importance to the project's success:
+
+    - Must : These are the highest-priority requirements that absolutely must be included in the final product.(Highest Priority)
+    - Should : These requirements should be delivered if at all possible. Their absence might reduce user satisfact.(High Priority)
+    - Could : These requirements provide beneficial enhancements or improvements but are not critical to basic functionality.(Medium Priority)
+    - Won't : Not critical or required; might revisit in the future.(Lowest Priority)
+      
+      #### Milestones & Sprints
+
+    - Each Milestone corresponds to a Sprint or Epic, grouping related issues together.
+    - Milestones clearly outline deadlines and project phases.
+    - User stories (GitHub Issues) are linked to Milestones for tracking.
+
+      #### Project Board
+
+    - We use a Kanban board structured into clear columns (To Do, In Progress, Review, and Done) to reflect real-time progress.
+    - Issues on the board are labeled with MoSCoW tags for quick prioritization.
+
+
 ---
 ## Testing:
 #### [Menu](#features)
@@ -345,6 +373,11 @@ The Machos Takeaway project utilizes Django's built-in testing framework to ensu
 
 ## Bugs Detected:
 #### [Menu](#features)
+
+ - **Issue with Edit Comment**: 
+  Need to be added !!!!!!!!!!
+   **Resolution**: 
+  Nedd to be added.
 
  - **Issue with Reservation Date Input**: 
   During the initial testing phase of the reservation functionality, it was discovered that the system allowed users to make reservations for past dates. This posed a significant concern as it would lead to confusion and inaccuracies in reservation management.
