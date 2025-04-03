@@ -104,14 +104,25 @@ TEMPLATES = [
 WSGI_APPLICATION = 'takeaway.wsgi.application'
 
 
-# Database
-DATABASES = {
-    'default': dj_database_url.parse(
-        os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3")  # Default to SQLite if not set
-    )
-}
+# Database configuration: SQLite for local, DATABASE_URL for production
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+# Use SQLite explicitly for tests
 if 'test' in sys.argv:
-    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 
 # Password validation
 
