@@ -113,7 +113,72 @@ Additionally, the site features an admin interface built with Django, which enab
    * Address
    * Opening hours
 
+## User Experience (UX) Design
+#### [Menu](#features)
 
+The Machos Takeaway project emphasizes an intuitive, responsive, and engaging experience across all devices. The UX decisions were guided by best practices for accessibility, visual clarity, and user-centered design principles.
+
+###  **Key UX Features:**
+
+| Feature | Description |
+|--------------------------------------|-------------------------------------------------------------------|
+| Responsive Layout  | Fully responsive across mobile, tablet, and desktop using Bootstrap 5 and custom CSS media queries |
+| Navigation | Clear, consistent navigation with active link highlights and smooth redirects. |
+| Comment System | Authenticated users can submit, edit, or delete comments. Superusers auto-approve, while others require moderation. |
+| Reservations UX | Logged-in users can reserve tables using a simplified form with real-time validation. Past dates are disabled, and reservations under 24 hours are blocked. |
+| Form Validation | Custom client- and server-side validation for all forms including phone number, booking time, and special requests. |
+| Feedback & Alerts | Interactive flash messages (success, error, info) with dismiss buttons and auto-hide functionality for streamlined feedback. |
+| Google Maps Integration | Embedded interactive map for location discovery via Google Maps API. |
+| Accessibility | All form elements are properly labeled. Color contrasts and focus states follow accessibility best practices. |
+
+
+UX Goals Achieved:
+
+ * Reduce friction in critical user flows (e.g. table reservation, leaving a review).
+ * Promote trust and transparency (approval status, success messages).
+ * Align visual branding with Machos Takeaway's friendly and bold identity.
+
+#### Wireframes :
+
+All wireframes were initially created using Balsamiq before development began.
+
+* Home Page:
+
+  ![HomePageW](/READMEmedia/wireframe_main_page.png)
+
+* Product Listing:
+
+  ![ProductListW](/READMEmedia/wireframe_product_list.png)
+
+
+* Product Detail:
+
+  ![ProductDetailW](/READMEmedia/wireframe_product_details.png)
+
+---
+
+### 🎨 Color Scheme
+     
+  * The Machos Takeaway brand identity is reflected through a warm and appetizing color palette that enhances the user          experience across the site.
+
+
+
+    |      Colour Name           |       Swatch     |            Hex Code                                   |   Usage                                 |
+    |---------------------------------|-----------------------------|-----------------------------------------|---------------------------------------------------|
+    |        **Main Yellow**       |  <span style="background-color:#ffbe33; padding:5px 20px; display:inline-block; border:1px solid #ccc;"></span> |        #ffbe33        |  Primary buttons, highlights  |
+    | **Hover Yellow**           | <span style="background-color:#e69c00; padding:5px 20px; display:inline-block; border:1px solid #ccc;"></span>    | #e69c00 | Button hovers, interactive elements | 
+    | **Dark Grey**               | <span style="background-color:#222831; padding:5px 20px; display:inline-block; border:1px solid #ccc;"></span>  | #222831 | Background sections (footer, cards)  |
+    | **White**                  | 	<span style="background-color:#ffffff; padding:5px 20px; display:inline-block; border:1px solid #ccc;"></span>   | #ffffff | Text, backgrounds, contrast areas  |
+    | **Light Grey**               | <span style="background-color:#f1f2f3; padding:5px 20px; display:inline-block; border:1px solid #ccc;"></span> | #f1f2f3 |  Menu card backgrounds    |
+    | **Accent Red**              | <span style="background-color:#dc3545; padding:5px 20px; display:inline-block; border:1px solid #ccc;"></span>   | 	#dc3545  |  Error alerts, delete buttons    |
+    | **Custom Green**             | <span style="background-color:#a8c65f; padding:5px 20px; display:inline-block; border:1px solid #ccc;"></span>  | #a8c65f | Confirmation, success (e.g., approve) |
+
+
+    The design aims for an elegant yet fun experience, with strong contrast and visual clarity for accessibility.
+
+    ---
+
+---
 
 ## Technologies:
 #### [Menu](#features)
@@ -140,31 +205,51 @@ Additionally, the site features an admin interface built with Django, which enab
  * [Am I Responsive](https://ui.dev/amiresponsive)
     * Screenshots for README.md file.
 
- * ### Project Management:
+ ---
 
-      #### Agile Methodology:
+ ## Project Management:
 
-      This project uses Agile methodology for managing tasks and tracking progress efficiently. We leverage GitHub Issues, Milestones, and a Kanban-style project board for clear organization and transparency.
+  #### Agile Methodology:
 
-      #### MoSCoW Prioritization:
+  This project uses Agile methodology for managing tasks and tracking progress efficiently. We leverage GitHub Issues, Milestones, and a Kanban-style project board for clear organization and transparency.
 
-      I have ategorize tasks and user stories using the MoSCoW method, clearly indicating their importance to the project's success:
+  #### MoSCoW Prioritization:
 
-    - Must : These are the highest-priority requirements that absolutely must be included in the final product.(Highest Priority)
-    - Should : These requirements should be delivered if at all possible. Their absence might reduce user satisfact.(High Priority)
-    - Could : These requirements provide beneficial enhancements or improvements but are not critical to basic functionality.(Medium Priority)
-    - Won't : Not critical or required; might revisit in the future.(Lowest Priority)
+  I have ategorize tasks and user stories using the MoSCoW method, clearly indicating their importance to the project's success:
+
+  - Must : These are the highest-priority requirements that absolutely must be included in the final product.(Highest Priority)
+  - Should : These requirements should be delivered if at all possible. Their absence might reduce user satisfact.(High Priority)
+  - Could : These requirements provide beneficial enhancements or improvements but are not critical to basic functionality.(Medium Priority)
+  - Won't : Not critical or required; might revisit in the future.(Lowest Priority)
+
+  #### Includes some helpfulll labels like:
+
+  - bug : Something isn't working
+  - documentation : Improvements or additions to documentation
+  - help wanted : Extra attention is needed
+  - question : Further information is requested
+
+  ![Labels](/screenshots/milestones/Labels.png)
       
-      #### Milestones & Sprints
+  #### Milestones & Sprints
 
-    - Each Milestone corresponds to a Sprint or Epic, grouping related issues together.
-    - Milestones clearly outline deadlines and project phases.
-    - User stories (GitHub Issues) are linked to Milestones for tracking.
+  - Each Milestone corresponds to a Sprint or Epic, grouping related issues together.
 
-      #### Project Board
+  ![Milestones](/screenshots/milestones/Milestone_Finalize%20Deployment&Secutity.png)
+  
+  - Milestones clearly outline deadlines and project phases.
+  - User stories (GitHub Issues) are linked to Milestones for tracking.
 
-    - We use a Kanban board structured into clear columns (To Do, In Progress, Review, and Done) to reflect real-time progress.
-    - Issues on the board are labeled with MoSCoW tags for quick prioritization.
+  #### Project Board
+
+  - Use a Kanban board structured into clear columns (To Do, In Progress, and Done) to reflect real-time progress.
+
+  ![Kanban](/screenshots/milestones/Kanban.png)
+
+  - Issues on the board are labeled with MoSCoW tags for quick prioritization.
+     
+  ![Kanban](/screenshots/milestones/open_issue.png)
+
 
 
 ---
@@ -355,6 +440,14 @@ The Machos Takeaway project utilizes Django's built-in testing framework to ensu
    To run all tests in the Django project, use the following command:
 
     python manage.py test
+
+##  Technology Stack:
+#### [Menu](#features)
+
+
+ ### **Backend**
+ * **Python & Django** (Django Framework)
+ * **PostgreSQL** (Relational Database)
 
 ## Deployment:
 #### [Menu](#features)
