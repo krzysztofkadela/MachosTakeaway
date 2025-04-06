@@ -569,17 +569,108 @@ The Machos Takeaway project utilizes Django's built-in testing framework to ensu
 
 ---
 
-## Deployment:
+## Installation & Setup
+
+1️⃣ Clone the Repository
+
+```
+bash
+
+git clone https://github.com/krzysztofkadela/MachosTakeaway.git  
+cd MachosTakeaway
+
+```
+2️⃣ Set Up a Virtual Environment
+
+```
+bash
+
+python -m venv env  
+source env/bin/activate  # On Windows: env\Scripts\activate
+
+```
+
+3️⃣ Install Dependencies
+
+```
+bash
+
+pip install -r requirements.txt
+
+```
+
+4️⃣ Create a .env File
+
+Add your local environment variables inside .env or env.py:
+
+```
+SECRET_KEY=your-secret-key
+DEBUG=True
+DATABASE_URL=sqlite:///db.sqlite3
+GOOGLE_MAPS_API_KEY=your-google-maps-api-key
+CLOUDINARY_URL = your-cloudinary-url
+
+```
+
+5️⃣ Apply Migrations & Run the Server
+
+```
+python manage.py migrate  
+python manage.py runserver
+
+```
+
+
+## Deployment (Heroku)
 #### [Menu](#features)
 
-### This app was deployed on Heroku
+###  Before You Begin:
+ - Make sure DEBUG = False in production
+ - Confirm ALLOWED_HOSTS includes your Heroku domain
 
-   #### Simple steps:
+### Deploy Using the Heroku Dashboard
 
-   * Fork or clone this repository
-   * Create a new Heroku app
-   * Link the heroku app to the repository
-   * Click on Deploy
+  - #### Create a Heroku App
+     * Go to Heroku Dashboard
+     * Click "New" → "Create New App"
+     * Enter a unique app name
+     * Choose a region and click "Create app"
+  
+  * #### Connect to GitHub
+    - Go to the Deploy tab
+    - Choose GitHub as deployment method
+    - Connect your GitHub account
+    - Search and connect your MachosTakeaway repo
+
+  * #### Set Up Environment Variables (Config Vars)
+    -  In the Settings tab → Click "Reveal Config Vars":
+
+   ```
+     SECRET_KEY = your-secret-key
+     DEBUG = False
+     DATABASE_URL = your-postgres-db-url
+     GOOGLE_MAPS_API_KEY = your-maps-api-key
+     CLOUDINARY_URL = your-cloudinary-url
+
+  ```
+  * #### Trigger Deployment
+     - In the Deploy tab → Manual Deploy section
+     - Click "Deploy Branch"
+     - Heroku will install dependencies and run build
+
+  * #### Post-Deployment Setup
+     - From the More → Run Console:
+
+     ```
+     bash
+
+      python manage.py migrate
+      python manage.py collectstatic --noinput
+      python manage.py createsuperuser
+     ```
+
+  * #### Done! Your app is now live. Visit it via the "Open App" button in Heroku dashboard
+
    * Live "Machos Takeway" app you can find by clicking this link:
      [heroku](https://machostakaeaway-202ce3a8c774.herokuapp.com/)
 
