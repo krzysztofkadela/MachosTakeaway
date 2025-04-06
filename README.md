@@ -192,7 +192,9 @@ All wireframes were initially created using Balsamiq before development began.
  * Gunicorn For serving Django application in production environments.
  * Jest used for testing front-end functionalities in the application.
  * Babel JavaScript compiler to use the latest JavaScript features, ensuring compatibility across different browsers.
+
  ---
+
 ## Programs Used in project:
 #### [Menu](#features)
 
@@ -250,9 +252,132 @@ All wireframes were initially created using Balsamiq before development began.
      
   ![Kanban](/screenshots/milestones/open_issue.png)
 
-
-
 ---
+
+## Data Models & Relationships:
+
+* CustomerComment Model
+
+
+    | FIeld Name              | Type                                    |   Description                                  |
+    |-------------------------|-----------------------------------------|---------------------------------------------------|
+    | **user**                |   ForeignKey  |  Linked to User who posted the comment.|
+    | **comment** | TextField | The body of the comment. |
+    | **comment_date**       | DateTimeField |  When the comment was posted.  |
+    | **updated_on**          |   DateTimeField    |   Auto-update on comment edit.  |
+    | **is_approved**       |  	BooleanField |    Whether the comment is approved for display.   |
+
+    ---
+
+    ```
+    
+    User ──────┐
+           │
+        CustomerComment
+             │
+     [Text, Approved, Timestamp]
+
+    ```
+    - Each CustomerComment is linked to a User.
+    - Comments include approval logic and timestamps.
+
+* Reservation Model
+
+
+    | FIeld Name              | Type                                    |   Description                                  |
+    |-------------------------|-----------------------------------------|---------------------------------------------------|
+    | **user**                |   ForeignKey  | Linked to the user making the reservation.|
+    | **reservation_date** | DateTimeField | Timestamp when reservation was created. |
+    | **number_of_guests**       | IntegerField | Number of guests (limited to 6 max via form). |
+    | **contact_number**          |   CharField   |   Customer's contact number.  |
+    | **booking_date**       |  	DateField |    Date of the reservation.   |
+    | **booking_time**       |  	TimeField |    Time of the reservation.   |
+    | **is_approved** | BooleanField | For internal approval management. |
+    | **special_requests** | CharField | Optional field for special requests. |
+
+     ```
+    
+   User ───────────────┐
+                    │
+               Reservation ───→ RestaurantSettings
+                    │
+      [Guests, Phone, Date, Time, Approved, Notes]
+
+    ```
+    - Reservations are made by users.
+    - Booking slots are validated against RestaurantSettings.
+
+
+* RestaurantSettings Model
+ 
+    | FIeld Name              | Type                                    |   Description                                  |
+    |-------------------------|-----------------------------------------|---------------------------------------------------|
+    | **opening_time** |   TimeField  | Restaurant opening hour. |
+    | **closing_time** |   TimeField  | Restaurant closing hour. |
+
+
+     ```
+    
+     RestaurantSettings
+              │
+     [Opening Time, Closing Time]
+
+    ```
+    - Used by the reservation form to validate time choices.
+
+ * About Model
+ 
+    | FIeld Name              | Type                                    |   Description                                  |
+    |-------------------------|-----------------------------------------|---------------------------------------------------|
+    | **heading** |   CharField  | 	Title or heading of the about section.|
+    | **content** |   TextField | Descriptive content about the restaurant. |
+    | **image**  | CloudinaryField | Image uploaded using Cloudinary. |
+    | **created_on** | DateTimeField | Auto-generated on creation. |
+    | **updated_on** | DateTimeField | Auto-updated on modification. | 
+
+     ```
+    
+     About
+       │
+       ├─ Heading
+       ├─ Content
+       ├─ Image (Cloudinary)
+       ├─ Created_on
+       └─ Updated_o
+
+    ```
+    - Used to dynamically display business information on the About page.
+
+ * MenuItem Model
+ 
+    | FIeld Name              | Type                                    |   Description                                  |
+    |-------------------------|-----------------------------------------|---------------------------------------------------|
+    | **title** |   CharField  | 	Name of the menu item.|
+    | **description** |   TextField | Description of the item. |
+    | **price**  | DecimalField | Price of the item. |
+    | **category** | CharField | Menu category: burger, pizza, etc.|
+    | **image** | CloudinaryField | Image hosted via Cloudinary |
+    | **slug** | SlugField | Auto-generated from description. | 
+
+
+     ```
+    
+     MenuItem
+      │
+      ├─ Title
+      ├─ Description
+      ├─ Price
+      ├─ Category  ← (burger, pizza, etc.)
+      ├─ Image (Cloudinary)
+      └─ Slug (Auto)
+
+    ```
+    - Displays available dishes.
+    - Categorized and visually enriched via images.
+
+    ---
+
+
 ## Testing:
 #### [Menu](#features)
 
@@ -441,13 +566,8 @@ The Machos Takeaway project utilizes Django's built-in testing framework to ensu
 
     python manage.py test
 
-##  Technology Stack:
-#### [Menu](#features)
 
-
- ### **Backend**
- * **Python & Django** (Django Framework)
- * **PostgreSQL** (Relational Database)
+---
 
 ## Deployment:
 #### [Menu](#features)
