@@ -678,15 +678,63 @@ python manage.py runserver
 ## Bugs Detected:
 #### [Menu](#features)
 
- - **Issue with Edit Comment**: 
-  Need to be added !!!!!!!!!!
-   **Resolution**: 
-  Nedd to be added.
+ ### **Issue with Reservation Date Input**: 
+  * During the initial testing phase of the reservation functionality, it was discovered that the system allowed users to make reservations for past dates. This posed a significant concern as it would lead to confusion and inaccuracies in reservation management.
 
- - **Issue with Reservation Date Input**: 
-  During the initial testing phase of the reservation functionality, it was discovered that the system allowed users to make reservations for past dates. This posed a significant concern as it would lead to confusion and inaccuracies in reservation management.
-   **Resolution**: 
-  The validation logic in the `ReservationForm` was updated to ensure that users cannot select a past date when trying to make a reservation. Now, only future dates are permitted for booking, enhancing the user experience and maintaining the integrity of reservations.
+  *  **Resolution**: 
+    The validation logic in the `ReservationForm` was updated to ensure that users cannot select a past date when trying to make a reservation. Now, only future dates are permitted for booking, enhancing the user experience and maintaining the integrity of reservations.
+
+  ### **Edit Comment Issue 1**
+
+  * Description:
+
+      When a user attempted to edit a comment, instead of updating the existing comment, the system created a new comment entry, leaving the old one unchanged. This led to duplicated comments and confusion.
+
+  * Expected Behavior:
+
+     The existing comment should be updated in place, not duplicated.
+
+  * Root Cause:
+
+     The edit_comment view was not using the instance parameter in the form, so Django treated the form submission as a new comment instead of an update.
+
+  * Resolution:
+
+     The edit_comment view was updated to pass the existing comment instance into the form:
+
+     ```
+     python
+     
+     form = CustomerCommentForm(request.POST, instance=comment)
+     
+     ```
+   
+  ### **Edit Comment Issue 2**
+
+  * Description:
+
+    When a user edits an existing comment, the comment is automatically re-approved even if it was previously pending. This bypasses the intended moderation process for non-admin users.
+
+  * Expected Behavior:
+
+    Edited comments by regular users should be marked as is_approved = False and re-submitted for approval after modification.
+
+  * Root Cause:
+
+    The edit_comment view was missing logic to reset the is_approved field for non-superusers.
+
+  * Resolution: 
+
+    The following fix was applied in views.py under the edit_comment function:
+
+    ```
+    python
+
+    if not request.user.is_superuser:
+    updated_comment.is_approved = False
+    
+    ```
+  
   
 ## Unfixed Bugs:
   * All detected bugs have been fixed.
