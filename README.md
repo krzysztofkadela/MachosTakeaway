@@ -620,6 +620,48 @@ python manage.py runserver
 
 ```
 
+## Special Setup: Cloudinary & Google Maps
+
+
+### This project uses Cloudinary for handling media uploads (e.g., images in menu and about sections). To set it up:
+
+
+1️⃣ Create a Cloudinary account at cloudinary.com.
+
+
+2️⃣ Go to Dashboard, and locate your Cloudinary URL — it looks like this:
+
+
+```
+cloudinary://<API_KEY>:<API_SECRET>@<CLOUD_NAME>
+
+```
+
+3️⃣ Add the following to your .env or env.py:
+
+```
+CLOUDINARY_URL=cloudinary://<your-api-key>:<your-api-secret>@<your-cloud-name>
+
+```
+
+### Google Maps API (for displaying restaurant location)
+
+We use Google Maps on the homepage to show the restaurant’s location.
+
+1️⃣ Visit Google Cloud Console.
+
+2️⃣ Create a new project and enable the Maps JavaScript API.
+
+3️⃣ Generate a Maps API Key and restrict it (recommended).
+
+4️⃣ Add your key to .env or env.py:
+
+```
+
+GOOGLE_MAPS_API_KEY=your-google-maps-api-key
+
+```
+The project dynamically injects this key into templates to display the map correctly.
 
 ## Deployment (Heroku)
 #### [Menu](#features)
