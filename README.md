@@ -157,7 +157,12 @@ All wireframes were initially created using Balsamiq before development began.
 
 ---
 
-### 🎨 Color Scheme
+### Typography:
+
+   * Dancing Script for headings (gives an elegant vibe)
+   * Open Sans for body text (clean, easy to read)
+
+###  Color Scheme
      
   * The Machos Takeaway brand identity is reflected through a warm and appetizing color palette that enhances the user          experience across the site.
 
@@ -377,7 +382,10 @@ All wireframes were initially created using Balsamiq before development began.
 
     ---
 
-
+  ### Mermaid ERD:
+   
+   ![ERD](/screenshots/mermaid_ERD.png)
+   
 ## Testing:
 #### [Menu](#features)
 
@@ -709,6 +717,7 @@ The project dynamically injects this key into templates to display the map corre
       python manage.py migrate
       python manage.py collectstatic --noinput
       python manage.py createsuperuser
+
      ```
 
   * #### Done! Your app is now live. Visit it via the "Open App" button in Heroku dashboard
