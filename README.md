@@ -726,6 +726,39 @@ The project dynamically injects this key into templates to display the map corre
   *  **Resolution**: 
     The validation logic in the `ReservationForm` was updated to ensure that users cannot select a past date when trying to make a reservation. Now, only future dates are permitted for booking, enhancing the user experience and maintaining the integrity of reservations.
 
+  ### Bug: Phone Number Validation
+  * Problem Description:
+      
+      During manual testing, it was discovered that the reservation form allowed alphabetic characters in the contact number field, such as abc123. This violated expected input formats and could lead to failed contact attempts.
+
+  * Expected Behavior:
+
+     The form should accept only valid phone numbers between 9 and 15 digits, optionally starting with a + symbol.
+
+  * Root Cause:
+
+    The original form lacked a regex-based validator on the contact_number field.
+
+  * Resolution: 
+
+     Applied a RegexValidator directly in the Reservation model:
+
+     ```
+      from django.core.validators import RegexValidator
+
+        phone_regex = RegexValidator(
+           regex=r'^\+?\d{9,15}$',
+           message="Phone number must be entered in the format '+999999999' (9 to 15 digits)."
+      )
+
+      contact_number = models.CharField(
+           max_length=15,
+           validators=[phone_regex],
+          help_text="Enter a valid phone number (9-15 digits, optional '+')."
+       )
+  
+     ```
+
   ### **Edit Comment Issue 1**
 
   * Description:
