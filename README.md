@@ -142,18 +142,37 @@ UX Goals Achieved:
 
 All wireframes were initially created using Balsamiq before development began.
 
-* Home Page:
+* Home Page (Desctop):
 
-  ![HomePageW](/READMEmedia/wireframe_main_page.png)
+  ![HomePageW](/screenshots/machos_main_wire.png)
 
-* Product Listing:
+* Home Page (Mobile)
+  
+  ![HomePageW](/screenshots/machos_main_wire.png)
 
-  ![ProductListW](/READMEmedia/wireframe_product_list.png)
+* Menu Page (Desctop):
 
+  ![MenuPageW](/screenshots/machos_main_wire.png)
 
-* Product Detail:
+* Menu Page (Desctop):
 
-  ![ProductDetailW](/READMEmedia/wireframe_product_details.png)
+  ![MenuPageW](/screenshots/machos_main_wire.png)
+
+* About Page (Desctop):
+
+  ![AboutPageW](/screenshots/machos_main_wire.png)
+
+* About Page (Mobile):
+
+  ![AboutPageW](/screenshots/machos_main_wire.png)
+
+* Book Table  Page (Desctop):
+
+  ![BookTablePageW](/screenshots/machos_main_wire.png)
+
+* Book Table  Page (Mobile):
+
+  ![BookTablePageW](/screenshots/machos_main_wire.png)
 
 ---
 
@@ -191,7 +210,7 @@ All wireframes were initially created using Balsamiq before development began.
  * Django: The main framework, providing a robust MVC architecture, ORM, and built-in admin interface.
  * HTML/CSS: For developing the front-end layout and styling.
  * Bootstrap: Create responsive design for website.
- * PostgreSQL to cretate databes.
+ * PostgreSQL to create databes.
  * Django Allauth: For user authentication, registration, and account management.
  * Django Crispy Forms: To manage and render forms more easily and with a better user experience.
  * Gunicorn For serving Django application in production environments.
@@ -222,14 +241,14 @@ All wireframes were initially created using Balsamiq before development began.
 
   #### MoSCoW Prioritization:
 
-  I have ategorize tasks and user stories using the MoSCoW method, clearly indicating their importance to the project's success:
+  I have categorized tasks and user stories using the MoSCoW method, clearly indicating their importance to the project's success:
 
   - Must : These are the highest-priority requirements that absolutely must be included in the final product.(Highest Priority)
-  - Should : These requirements should be delivered if at all possible. Their absence might reduce user satisfact.(High Priority)
+  - Should : These requirements should be delivered if at all possible. Their absence might reduce user satisfaction. (High Priority)
   - Could : These requirements provide beneficial enhancements or improvements but are not critical to basic functionality.(Medium Priority)
   - Won't : Not critical or required; might revisit in the future.(Lowest Priority)
 
-  #### Includes some helpfulll labels like:
+  #### Includes some helpful labels like:
 
   - bug : Something isn't working
   - documentation : Improvements or additions to documentation
@@ -285,6 +304,7 @@ All wireframes were initially created using Balsamiq before development began.
     ```
     - Each CustomerComment is linked to a User.
     - Comments include approval logic and timestamps.
+    - Comments can be created, edited, and deleted by logged-in users.
 
 * Reservation Model
 
@@ -311,7 +331,7 @@ All wireframes were initially created using Balsamiq before development began.
     ```
     - Reservations are made by users.
     - Booking slots are validated against RestaurantSettings.
-
+    - Reservations can be created, viewed, and canceled by users.
 
 * RestaurantSettings Model
  
@@ -379,12 +399,77 @@ All wireframes were initially created using Balsamiq before development began.
     ```
     - Displays available dishes.
     - Categorized and visually enriched via images.
+    - MenuItems can be created or updated by admin in Django Admin (if that’s the chosen approach).
 
     ---
 
   ### Mermaid ERD:
+
+   ```mermaid
+
+   erDiagram
+    USER {
+        int id PK
+        string username
+        string email
+        string password
+    }
+
+    CUSTOMERCOMMENT {
+        int id PK
+        int user_id FK
+        text comment
+        datetime comment_date
+        datetime updated_on
+        boolean is_approved
+    }
+
+    RESERVATION {
+        int id PK
+        int user_id FK
+        datetime reservation_date
+        int number_of_guests
+        char(15) contact_number
+        date booking_date
+        time booking_time
+        boolean is_approved
+        varchar(50) special_requests
+    }
+
+    RESTAURANTSETTINGS {
+        int id PK
+        time opening_time
+        time closing_time
+    }
+
+    ABOUT {
+        int id PK
+        varchar(200) heading
+        text content
+        string image
+        datetime created_on
+        datetime updated_on
+    }
+
+    MENUITEM {
+        int id PK
+        varchar(100) title
+        text description
+        decimal price
+        char(50) category
+        string image
+        slug slug
+    }
+
+    %% RELATIONSHIPS
+
+    USER ||--|{ CUSTOMERCOMMENT : "1 to many"
+    USER ||--|{ RESERVATION : "1 to many"
+    RESERVATION }|--|| RESTAURANTSETTINGS : "References or uses time constraints"
    
-   ![ERD](/screenshots/mermaid_ERD.png)
+   
+   ```
+   
    
 ## Testing:
 #### [Menu](#features)
