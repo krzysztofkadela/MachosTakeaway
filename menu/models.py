@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.text import slugify # imports slug field 
+from django.utils.text import slugify  # imports slug field
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
@@ -23,7 +23,8 @@ class MenuItem(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.description[:20])  # Generate slug from first 30 characters of description
+            self.slug = slugify(self.description[:20])
+            # Generate slug from first 30 characters of description
         super().save(*args, **kwargs)
 
     def __str__(self):

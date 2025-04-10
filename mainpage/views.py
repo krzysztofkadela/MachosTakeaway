@@ -13,8 +13,9 @@ def index(request):
     Homepage view, fetching the last 10 approved comments.
     """
     google_maps_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
-    comments = CustomerComment.objects.filter(is_approved=True).order_by('-updated_on')[:10]
-    
+    comments = CustomerComment.objects.filter(
+        is_approved=True).order_by('-updated_on')[:10]
+
     context = {
         'comments': comments,
         'google_maps_api_key': google_maps_api_key
@@ -40,6 +41,7 @@ def custom_login(request):
         form = CustomLoginForm()
     return render(request, 'login.html', {'form': form})
 
+
 def custom_logout(request):
     """Log out the user and redirect to the homepage."""
     logout(request)
@@ -62,10 +64,13 @@ def add_comment(request):
             # Auto-approve if superuser:
             if request.user.is_superuser:
                 comment.is_approved = True
-                messages.success(request, "Your comment has been submitted successfully!")
+                messages.success(
+                    request, "Your comment has been submitted successfully!")
             else:
                 comment.is_approved = False
-                messages.info(request, "Your comment has been submitted and is awaiting approval.")
+                messages.info(
+                    request,
+                    "Your comment has been submitted and is awaiting approval")
             comment.save()
             return redirect('index')
     else:
@@ -79,8 +84,9 @@ def user_comments(request):
     Display the current user's comments (approved or unapproved).
     Allow user to submit new comments.
     """
-    comments = CustomerComment.objects.filter(user=request.user).order_by('-comment_date')
-    
+    comments = CustomerComment.objects.filter(
+        user=request.user).order_by('-comment_date')
+
     if request.method == 'POST':
         form = CustomerCommentForm(request.POST)
         if form.is_valid():
@@ -89,10 +95,12 @@ def user_comments(request):
             # Keep comment unapproved if not a superuser:
             if request.user.is_superuser:
                 new_comment.is_approved = True
-                messages.success(request, "Your comment has been submitted successfully!")
+                messages.success(
+                    request, "Your comment has been submitted successfully!")
             else:
                 new_comment.is_approved = False
-                messages.info(request, "Comment submitted and awaiting approval.")
+                messages.info(
+                    request, "Comment submitted and awaiting approval.")
             new_comment.save()
             return redirect('user_comments')
     else:
@@ -110,24 +118,27 @@ def edit_comment(request, comment_id):
     View to edit an existing comment that belongs to the logged-in user.
     After editing, if user is not superuser, mark comment as unapproved.
     """
-    comment = get_object_or_404(CustomerComment, id=comment_id, user=request.user)
-    
+    comment = get_object_or_404(
+        CustomerComment, id=comment_id, user=request.user)
+
     if request.method == 'POST':
         form = CustomerCommentForm(request.POST, instance=comment)
         if form.is_valid():
             updated_comment = form.save(commit=False)
-            
+
             # If user is not superuser, set is_approved=False
             if not request.user.is_superuser:
                 updated_comment.is_approved = False
 
             updated_comment.save()
-            messages.success(request, "Your comment has been updated successfully!")
+            messages.success(
+                request, "Your comment has been updated successfully!")
             return redirect('user_comments')  # or wherever you want
     else:
         form = CustomerCommentForm(instance=comment)
-    
-    return render(request, 'edit_comment.html', {'form': form, 'comment': comment})
+
+    return render(
+        request, 'edit_comment.html', {'form': form, 'comment': comment})
 
 
 @login_required
@@ -135,7 +146,8 @@ def delete_comment(request, comment_id):
     """
     Delete an existing comment if it belongs to the logged-in user.
     """
-    comment = get_object_or_404(CustomerComment, id=comment_id, user=request.user)
+    comment = get_object_or_404(
+        CustomerComment, id=comment_id, user=request.user)
     comment.delete()
     messages.success(request, "Comment deleted successfully!")
     return redirect('user_comments')
