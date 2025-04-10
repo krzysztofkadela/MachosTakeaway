@@ -138,43 +138,127 @@ UX Goals Achieved:
  * Promote trust and transparency (approval status, success messages).
  * Align visual branding with Machos Takeaway's friendly and bold identity.
 
-#### Wireframes :
+#### Wireframes:
 
 All wireframes were initially created using Balsamiq before development began.
 
-* Home Page (Desctop):
+* Home Page (Desktop):
 
   ![HomePageW](/screenshots/machos_main_wire.png)
 
 * Home Page (Mobile)
   
-  ![HomePageW](/screenshots/machos_main_wire.png)
+  ![HomePageW](/screenshots/home_page_w_m.png)
 
-* Menu Page (Desctop):
+* Menu Page (Desktop):
 
-  ![MenuPageW](/screenshots/machos_main_wire.png)
+  ![MenuPageW](/screenshots/menu_page_w.png)
 
-* Menu Page (Desctop):
+* Menu Page (Mobile):
 
-  ![MenuPageW](/screenshots/machos_main_wire.png)
+  ![MenuPageW](/screenshots/menu_page_w_m.png)
 
-* About Page (Desctop):
+* About Page (Desktop):
 
-  ![AboutPageW](/screenshots/machos_main_wire.png)
+  ![AboutPageW](/screenshots/machos_about_w.png)
 
 * About Page (Mobile):
 
-  ![AboutPageW](/screenshots/machos_main_wire.png)
+  ![AboutPageW](/screenshots/machos_about_w_m.png)
 
-* Book Table  Page (Desctop):
+* Book Table  Page (Desktop):
 
-  ![BookTablePageW](/screenshots/machos_main_wire.png)
-
-* Book Table  Page (Mobile):
-
-  ![BookTablePageW](/screenshots/machos_main_wire.png)
+  ![BookTablePageW](/screenshots/booking_pge_w.png)
 
 ---
+
+#### Home Page (ASCII Mockup)
+
+<details> <summary>View Wireframe</summary>
+
+```
+---------------------------------------------------------
+|   LOGO: Machos Takeaway        [Login]  [Register]    |
+|-------------------------------------------------------|
+|   NAVBAR: Home | Menu | About | Book Table | Comments |
+|-------------------------------------------------------|
+|  HERO SECTION: 
+|    [  100% width background image / promotional text ]   
+|    [  “Juicy Burgers / Crisp Fries” etc.            ]
+|-------------------------------------------------------|
+|  OFFERS SECTION: 
+|   [ Tasty Thursdays - 20% Off ]  [ Pizza Days - 15% Off ]
+|
+|-------------------------------------------------------|
+|  MAP + LOCATION: 
+|   [Google Map IFRAME: lat=52.4064, lng=16.9342]       
+|
+|-------------------------------------------------------|
+|  FOOTER:
+|    [Contact Us | Social Media Icons | Opening Hours]
+---------------------------------------------------------
+
+```
+</details>
+
+#### Menu Page (ASCII Mockup)
+
+<details> <summary>View Wireframe</summary>
+
+```
+---------------------------------------------------------
+|   LOGO: Machos Takeaway        [Logout]               |
+|-------------------------------------------------------|
+|   NAVBAR: Home | Menu | About | Book Table | Comments |
+|-------------------------------------------------------|
+|  FILTERS / CATEGORY TABS:
+|    [All] [Burger] [Pizza] [Pasta] [Fries]
+|
+|-------------------------------------------------------|
+|  MENU ITEMS GRID (3 columns):
+|   [Image]  [Title]  [Description]  [Price]
+|   [Image]  [Title]  [Description]  [Price]
+|   [Image]  [Title]  [Description]  [Price]
+|
+|-------------------------------------------------------|
+| FOOTER
+---------------------------------------------------------
+
+```
+
+</details>
+
+#### Reservation Page (ASCII Mockup)
+
+<details> <summary>View Wireframe</summary>
+
+```
+---------------------------------------------------------
+|   LOGO: Machos Takeaway         [Logout]              |
+|-------------------------------------------------------|
+|   NAVBAR: Home | Menu | About | Book Table | Comments |
+|-------------------------------------------------------|
+|  YOUR RESERVATIONS:
+|   [Table listing upcoming reservations or "No reservations found."]
+|   [Cancel button for each reservation if any exist]
+|
+|-------------------------------------------------------|
+|  BOOK TABLE FORM:
+|   # guests: [Dropdown 1..6]
+|   contact_number: [Text input + validation]
+|   date: [Date picker]
+|   time: [Time dropdown from restaurant settings]
+|   special_requests: [Optional text]
+|
+|   [Submit Reservation]
+|
+|-------------------------------------------------------|
+| FOOTER
+---------------------------------------------------------
+
+```
+
+</details>
 
 ### Typography:
 
