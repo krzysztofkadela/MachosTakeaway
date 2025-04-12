@@ -18,13 +18,16 @@ Additionally, the site features an admin interface built with Django, which enab
 * ### [Footer Section](#footer-section-1)
 ### [Technologies](#technologies-1)
 ### [Programs_Used_in_project](#programs-used-in-project)
+### [Project_Management](#project-management)
+### [Data Models & Relationships](#data-models--relationships-1)
 ### [Testing](#testing-1)
 * [Validation_reports](#validation-reports)
 * [Manual_Testing](#manual-testing)
 * [Making_a_Reservation](#making-a-reservation)
 * [Deleting_a_Reservation](#deleting-a-reservation)
 ### [Automated Testing](#automated-testing)
-### [Deployment](#deployment)
+### [Installation & Setup](#installation--setup-1)
+### [Deployment](#deployment-heroku)
 ### [Bugs Detected](#bugs-detected)
 ### [Credits](#credits)
 * [Other](#other)
@@ -363,6 +366,7 @@ All wireframes were initially created using Balsamiq before development began.
 ---
 
 ## Data Models & Relationships:
+#### [Menu](#features)
 
 * CustomerComment Model
 
@@ -988,7 +992,7 @@ The project dynamically injects this key into templates to display the map corre
     
     ```
   
-  
+
 ## Unfixed Bugs:
   * All detected bugs have been fixed.
 
